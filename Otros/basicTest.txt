@@ -1,0 +1,22 @@
+int a,b;
+
+int funcionPrueba(int x, float y) {
+k = 1 * 1;
+	char c, d, e;
+	print("Hello");
+float f;
+int i;
+int k;
+x = 4 + 4;
+test();
+}
+
+void test() {
+char cc;
+}
+
+main{
+	int v, varX;
+
+	float g, h, w;
+}

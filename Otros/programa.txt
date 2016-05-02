@@ -1,0 +1,64 @@
+void prueba() {
+	print(x);
+	int xyz;
+	xyz = funcion2(x, 2, 3);
+
+	return;
+}
+
+float funcion2(int entero, float f, int z) {
+	int i,k,j;
+	if(1 > 2) {
+		if (2 > 3) { 
+			print (2);
+		} else { 
+			print ("string");
+		}
+	} else {
+		print ("float");
+	}
+	k = 2.5;
+	if (i < 2 & j > 3 | k) {
+		print(numero + 2);
+	}
+	
+	int numero;
+	entero = 4;
+	j = numero + k;
+
+	return;
+}
+
+int x;
+
+void test(int f) {
+	print("Test");
+
+	return;
+}
+
+main{
+	int jota;
+	x = 1;
+	string c;
+
+	x = input(int);
+
+	test(5);
+
+	if(1 > 2) {
+		if (2 > 3) { 
+			print (2);
+		} else { 
+			print ("string");
+		}
+	} else {
+		print ("float");
+	}
+
+	int j;
+	while ( 1 ) {
+		print(j);
+		j = j + 1;
+	}
+}

@@ -1,0 +1,2492 @@
+Created by PLY version 3.7 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> programa
+Rule 1     programa -> programaX inicioMain DELIMITADOR_LLAVES bloqueCodigo DELIMITADOR_LLAVES
+Rule 2     inicioMain -> MAIN
+Rule 3     programaX -> tipo IDENTIFICADOR programaY programaX
+Rule 4     programaX -> <empty>
+Rule 5     programaY -> var
+Rule 6     programaY -> funcion
+Rule 7     bloqueCodigo -> estatuto bloqueCodigo
+Rule 8     bloqueCodigo -> <empty>
+Rule 9     estatuto -> escritura
+Rule 10    estatuto -> IDENTIFICADOR estatutoX
+Rule 11    estatuto -> if
+Rule 12    estatuto -> while
+Rule 13    estatuto -> tipo IDENTIFICADOR var
+Rule 14    estatutoX -> DELIMITADOR_ABRIR constanteY DELIMITADOR_CERRAR FIN_LINEA
+Rule 15    estatutoX -> asignacionX OPERADOR_ASIGNACION estatutoY
+Rule 16    estatutoY -> input
+Rule 17    estatutoY -> asignacionY FIN_LINEA
+Rule 18    funcion -> idFuncion inicioFuncion bloqueCodigo accionRetorno DELIMITADOR_LLAVES
+Rule 19    idFuncion -> DELIMITADOR_ABRIR idFuncionX DELIMITADOR_CERRAR
+Rule 20    idFuncionX -> tipo nomParametro idFuncionZ idFuncionY
+Rule 21    idFuncionX -> <empty>
+Rule 22    nomParametro -> IDENTIFICADOR
+Rule 23    idFuncionY -> nextParam idFuncionX
+Rule 24    idFuncionY -> <empty>
+Rule 25    nextParam -> SEPARADOR
+Rule 26    idFuncionZ -> DELIMITADOR_CUADRADO exp DELIMITADOR_CUADRADO_CERRAR
+Rule 27    idFuncionZ -> <empty>
+Rule 28    inicioFuncion -> DELIMITADOR_LLAVES
+Rule 29    accionRetorno -> RETURN accionRetornoX FIN_LINEA
+Rule 30    accionRetornoX -> constante
+Rule 31    accionRetornoX -> <empty>
+Rule 32    var -> varX FIN_LINEA
+Rule 33    varX -> varY varZ
+Rule 34    varY -> DELIMITADOR_CUADRADO exp DELIMITADOR_CUADRADO_CERRAR
+Rule 35    varY -> <empty>
+Rule 36    varZ -> SEPARADOR IDENTIFICADOR varX
+Rule 37    varZ -> <empty>
+Rule 38    operacion -> expresion operacionX
+Rule 39    operacionX -> OPERADOR_ANDOR operacion
+Rule 40    operacionX -> <empty>
+Rule 41    expresion -> exp expresionX
+Rule 42    expresionX -> OPERADOR_LOGICO exp
+Rule 43    expresionX -> <empty>
+Rule 44    factor -> DELIMITADOR_ABRIR expresion DELIMITADOR_CERRAR
+Rule 45    factor -> constante
+Rule 46    factor -> OPERADOR_SR constante
+Rule 47    escritura -> PRINT DELIMITADOR_ABRIR operacion DELIMITADOR_CERRAR FIN_LINEA
+Rule 48    asignacionX -> DELIMITADOR_CUADRADO exp DELIMITADOR_CUADRADO_CERRAR
+Rule 49    asignacionX -> <empty>
+Rule 50    asignacionY -> operacion
+Rule 51    exp -> termino expX
+Rule 52    expX -> OPERADOR_SR exp
+Rule 53    expX -> <empty>
+Rule 54    termino -> factor terminoX
+Rule 55    terminoX -> OPERADOR_MD termino
+Rule 56    terminoX -> <empty>
+Rule 57    while -> WHILE DELIMITADOR_ABRIR operacion inicioWhile DELIMITADOR_LLAVES bloqueCodigo finWhile
+Rule 58    if -> IF DELIMITADOR_ABRIR operacion inicioIf DELIMITADOR_LLAVES bloqueCodigo DELIMITADOR_LLAVES ifX
+Rule 59    ifX -> else DELIMITADOR_LLAVES bloqueCodigo DELIMITADOR_LLAVES
+Rule 60    ifX -> <empty>
+Rule 61    input -> INPUT DELIMITADOR_ABRIR tipo DELIMITADOR_CERRAR FIN_LINEA
+Rule 62    constante -> cteString
+Rule 63    constante -> cteChar
+Rule 64    constante -> cteInt
+Rule 65    constante -> cteFloat
+Rule 66    constante -> cteId
+Rule 67    cteInt -> INT
+Rule 68    cteChar -> CHAR
+Rule 69    cteString -> STRING
+Rule 70    cteFloat -> FLOAT
+Rule 71    cteId -> IDENTIFICADOR constanteX
+Rule 72    constanteX -> DELIMITADOR_CUADRADO exp DELIMITADOR_CUADRADO_CERRAR
+Rule 73    constanteX -> DELIMITADOR_ABRIR constanteY DELIMITADOR_CERRAR
+Rule 74    constanteX -> <empty>
+Rule 75    constanteY -> constante constanteZ
+Rule 76    constanteY -> <empty>
+Rule 77    constanteZ -> SEPARADOR constanteY
+Rule 78    constanteZ -> <empty>
+Rule 79    tipo -> TIPO_STRING
+Rule 80    tipo -> TIPO_CHAR
+Rule 81    tipo -> TIPO_INT
+Rule 82    tipo -> TIPO_FLOAT
+Rule 83    tipo -> TIPO_VOID
+Rule 84    inicioWhile -> DELIMITADOR_CERRAR
+Rule 85    finWhile -> DELIMITADOR_LLAVES
+Rule 86    inicioIf -> DELIMITADOR_CERRAR
+Rule 87    else -> ELSE
+
+Terminals, with rules where they appear
+
+CHAR                 : 68
+DELIMITADOR_ABRIR    : 14 19 44 47 57 58 61 73
+DELIMITADOR_CERRAR   : 14 19 44 47 61 73 84 86
+DELIMITADOR_CUADRADO : 26 34 48 72
+DELIMITADOR_CUADRADO_CERRAR : 26 34 48 72
+DELIMITADOR_LLAVES   : 1 1 18 28 57 58 58 59 59 85
+ELSE                 : 87
+FIN_LINEA            : 14 17 29 32 47 61
+FLOAT                : 70
+IDENTIFICADOR        : 3 10 13 22 36 71
+IF                   : 58
+INPUT                : 61
+INT                  : 67
+MAIN                 : 2
+OPERADOR_ANDOR       : 39
+OPERADOR_ASIGNACION  : 15
+OPERADOR_LOGICO      : 42
+OPERADOR_MD          : 55
+OPERADOR_SR          : 46 52
+PRINT                : 47
+RETURN               : 29
+SEPARADOR            : 25 36 77
+STRING               : 69
+TIPO_CHAR            : 80
+TIPO_FLOAT           : 82
+TIPO_INT             : 81
+TIPO_STRING          : 79
+TIPO_VOID            : 83
+WHILE                : 57
+error                : 
+
+Nonterminals, with rules where they appear
+
+accionRetorno        : 18
+accionRetornoX       : 29
+asignacionX          : 15
+asignacionY          : 17
+bloqueCodigo         : 1 7 18 57 58 59
+constante            : 30 45 46 75
+constanteX           : 71
+constanteY           : 14 73 77
+constanteZ           : 75
+cteChar              : 63
+cteFloat             : 65
+cteId                : 66
+cteInt               : 64
+cteString            : 62
+else                 : 59
+escritura            : 9
+estatuto             : 7
+estatutoX            : 10
+estatutoY            : 15
+exp                  : 26 34 41 42 48 52 72
+expX                 : 51
+expresion            : 38 44
+expresionX           : 41
+factor               : 54
+finWhile             : 57
+funcion              : 6
+idFuncion            : 18
+idFuncionX           : 19 23
+idFuncionY           : 20
+idFuncionZ           : 20
+if                   : 11
+ifX                  : 58
+inicioFuncion        : 18
+inicioIf             : 58
+inicioMain           : 1
+inicioWhile          : 57
+input                : 16
+nextParam            : 23
+nomParametro         : 20
+operacion            : 39 47 50 57 58
+operacionX           : 38
+programa             : 0
+programaX            : 1 3
+programaY            : 3
+termino              : 51 55
+terminoX             : 54
+tipo                 : 3 13 20 61
+var                  : 5 13
+varX                 : 32 36
+varY                 : 33
+varZ                 : 33
+while                : 12
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . programa
+    (1) programa -> . programaX inicioMain DELIMITADOR_LLAVES bloqueCodigo DELIMITADOR_LLAVES
+    (3) programaX -> . tipo IDENTIFICADOR programaY programaX
+    (4) programaX -> .
+    (79) tipo -> . TIPO_STRING
+    (80) tipo -> . TIPO_CHAR
+    (81) tipo -> . TIPO_INT
+    (82) tipo -> . TIPO_FLOAT
+    (83) tipo -> . TIPO_VOID
+
+    MAIN            reduce using rule 4 (programaX -> .)
+    TIPO_STRING     shift and go to state 6
+    TIPO_CHAR       shift and go to state 4
+    TIPO_INT        shift and go to state 1
+    TIPO_FLOAT      shift and go to state 8
+    TIPO_VOID       shift and go to state 5
+
+    programaX                      shift and go to state 2
+    tipo                           shift and go to state 3
+    programa                       shift and go to state 7
+
+state 1
+
+    (81) tipo -> TIPO_INT .
+
+    IDENTIFICADOR   reduce using rule 81 (tipo -> TIPO_INT .)
+    DELIMITADOR_CERRAR reduce using rule 81 (tipo -> TIPO_INT .)
+
+
+state 2
+
+    (1) programa -> programaX . inicioMain DELIMITADOR_LLAVES bloqueCodigo DELIMITADOR_LLAVES
+    (2) inicioMain -> . MAIN
+
+    MAIN            shift and go to state 9
+
+    inicioMain                     shift and go to state 10
+
+state 3
+
+    (3) programaX -> tipo . IDENTIFICADOR programaY programaX
+
+    IDENTIFICADOR   shift and go to state 11
+
+
+state 4
+
+    (80) tipo -> TIPO_CHAR .
+
+    IDENTIFICADOR   reduce using rule 80 (tipo -> TIPO_CHAR .)
+    DELIMITADOR_CERRAR reduce using rule 80 (tipo -> TIPO_CHAR .)
+
+
+state 5
+
+    (83) tipo -> TIPO_VOID .
+
+    IDENTIFICADOR   reduce using rule 83 (tipo -> TIPO_VOID .)
+    DELIMITADOR_CERRAR reduce using rule 83 (tipo -> TIPO_VOID .)
+
+
+state 6
+
+    (79) tipo -> TIPO_STRING .
+
+    IDENTIFICADOR   reduce using rule 79 (tipo -> TIPO_STRING .)
+    DELIMITADOR_CERRAR reduce using rule 79 (tipo -> TIPO_STRING .)
+
+
+state 7
+
+    (0) S' -> programa .
+
+
+
+state 8
+
+    (82) tipo -> TIPO_FLOAT .
+
+    IDENTIFICADOR   reduce using rule 82 (tipo -> TIPO_FLOAT .)
+    DELIMITADOR_CERRAR reduce using rule 82 (tipo -> TIPO_FLOAT .)
+
+
+state 9
+
+    (2) inicioMain -> MAIN .
+
+    DELIMITADOR_LLAVES reduce using rule 2 (inicioMain -> MAIN .)
+
+
+state 10
+
+    (1) programa -> programaX inicioMain . DELIMITADOR_LLAVES bloqueCodigo DELIMITADOR_LLAVES
+
+    DELIMITADOR_LLAVES shift and go to state 12
+
+
+state 11
+
+    (3) programaX -> tipo IDENTIFICADOR . programaY programaX
+    (5) programaY -> . var
+    (6) programaY -> . funcion
+    (32) var -> . varX FIN_LINEA
+    (18) funcion -> . idFuncion inicioFuncion bloqueCodigo accionRetorno DELIMITADOR_LLAVES
+    (33) varX -> . varY varZ
+    (19) idFuncion -> . DELIMITADOR_ABRIR idFuncionX DELIMITADOR_CERRAR
+    (34) varY -> . DELIMITADOR_CUADRADO exp DELIMITADOR_CUADRADO_CERRAR
+    (35) varY -> .
+
+    DELIMITADOR_ABRIR shift and go to state 16
+    DELIMITADOR_CUADRADO shift and go to state 19
+    SEPARADOR       reduce using rule 35 (varY -> .)
+    FIN_LINEA       reduce using rule 35 (varY -> .)
+
+    programaY                      shift and go to state 13
+    varY                           shift and go to state 14
+    varX                           shift and go to state 15
+    idFuncion                      shift and go to state 17
+    var                            shift and go to state 18
+    funcion                        shift and go to state 20
+
+state 12
+
+    (1) programa -> programaX inicioMain DELIMITADOR_LLAVES . bloqueCodigo DELIMITADOR_LLAVES
+    (7) bloqueCodigo -> . estatuto bloqueCodigo
+    (8) bloqueCodigo -> .
+    (9) estatuto -> . escritura
+    (10) estatuto -> . IDENTIFICADOR estatutoX
+    (11) estatuto -> . if
+    (12) estatuto -> . while
+    (13) estatuto -> . tipo IDENTIFICADOR var
+    (47) escritura -> . PRINT DELIMITADOR_ABRIR operacion DELIMITADOR_CERRAR FIN_LINEA
+    (58) if -> . IF DELIMITADOR_ABRIR operacion inicioIf DELIMITADOR_LLAVES bloqueCodigo DELIMITADOR_LLAVES ifX
+    (57) while -> . WHILE DELIMITADOR_ABRIR operacion inicioWhile DELIMITADOR_LLAVES bloqueCodigo finWhile
+    (79) tipo -> . TIPO_STRING
+    (80) tipo -> . TIPO_CHAR
+    (81) tipo -> . TIPO_INT
+    (82) tipo -> . TIPO_FLOAT
+    (83) tipo -> . TIPO_VOID
+
+    DELIMITADOR_LLAVES reduce using rule 8 (bloqueCodigo -> .)
+    IDENTIFICADOR   shift and go to state 26
+    PRINT           shift and go to state 22
+    IF              shift and go to state 28
+    WHILE           shift and go to state 21
+    TIPO_STRING     shift and go to state 6
+    TIPO_CHAR       shift and go to state 4
+    TIPO_INT        shift and go to state 1
+    TIPO_FLOAT      shift and go to state 8
+    TIPO_VOID       shift and go to state 5
+
+    tipo                           shift and go to state 24
+    estatuto                       shift and go to state 25
+    while                          shift and go to state 29
+    bloqueCodigo                   shift and go to state 27
+    if                             shift and go to state 23
+    escritura                      shift and go to state 30
+
+state 13
+
+    (3) programaX -> tipo IDENTIFICADOR programaY . programaX
+    (3) programaX -> . tipo IDENTIFICADOR programaY programaX
+    (4) programaX -> .
+    (79) tipo -> . TIPO_STRING
+    (80) tipo -> . TIPO_CHAR
+    (81) tipo -> . TIPO_INT
+    (82) tipo -> . TIPO_FLOAT
+    (83) tipo -> . TIPO_VOID
+
+    MAIN            reduce using rule 4 (programaX -> .)
+    TIPO_STRING     shift and go to state 6
+    TIPO_CHAR       shift and go to state 4
+    TIPO_INT        shift and go to state 1
+    TIPO_FLOAT      shift and go to state 8
+    TIPO_VOID       shift and go to state 5
+
+    programaX                      shift and go to state 31
+    tipo                           shift and go to state 3
+
+state 14
+
+    (33) varX -> varY . varZ
+    (36) varZ -> . SEPARADOR IDENTIFICADOR varX
+    (37) varZ -> .
+
+    SEPARADOR       shift and go to state 32
+    FIN_LINEA       reduce using rule 37 (varZ -> .)
+
+    varZ                           shift and go to state 33
+
+state 15
+
+    (32) var -> varX . FIN_LINEA
+
+    FIN_LINEA       shift and go to state 34
+
+
+state 16
+
+    (19) idFuncion -> DELIMITADOR_ABRIR . idFuncionX DELIMITADOR_CERRAR
+    (20) idFuncionX -> . tipo nomParametro idFuncionZ idFuncionY
+    (21) idFuncionX -> .
+    (79) tipo -> . TIPO_STRING
+    (80) tipo -> . TIPO_CHAR
+    (81) tipo -> . TIPO_INT
+    (82) tipo -> . TIPO_FLOAT
+    (83) tipo -> . TIPO_VOID
+
+    DELIMITADOR_CERRAR reduce using rule 21 (idFuncionX -> .)
+    TIPO_STRING     shift and go to state 6
+    TIPO_CHAR       shift and go to state 4
+    TIPO_INT        shift and go to state 1
+    TIPO_FLOAT      shift and go to state 8
+    TIPO_VOID       shift and go to state 5
+
+    idFuncionX                     shift and go to state 36
+    tipo                           shift and go to state 35
+
+state 17
+
+    (18) funcion -> idFuncion . inicioFuncion bloqueCodigo accionRetorno DELIMITADOR_LLAVES
+    (28) inicioFuncion -> . DELIMITADOR_LLAVES
+
+    DELIMITADOR_LLAVES shift and go to state 37
+
+    inicioFuncion                  shift and go to state 38
+
+state 18
+
+    (5) programaY -> var .
+
+    TIPO_STRING     reduce using rule 5 (programaY -> var .)
+    TIPO_CHAR       reduce using rule 5 (programaY -> var .)
+    TIPO_INT        reduce using rule 5 (programaY -> var .)
+    TIPO_FLOAT      reduce using rule 5 (programaY -> var .)
+    TIPO_VOID       reduce using rule 5 (programaY -> var .)
+    MAIN            reduce using rule 5 (programaY -> var .)
+
+
+state 19
+
+    (34) varY -> DELIMITADOR_CUADRADO . exp DELIMITADOR_CUADRADO_CERRAR
+    (51) exp -> . termino expX
+    (54) termino -> . factor terminoX
+    (44) factor -> . DELIMITADOR_ABRIR expresion DELIMITADOR_CERRAR
+    (45) factor -> . constante
+    (46) factor -> . OPERADOR_SR constante
+    (62) constante -> . cteString
+    (63) constante -> . cteChar
+    (64) constante -> . cteInt
+    (65) constante -> . cteFloat
+    (66) constante -> . cteId
+    (69) cteString -> . STRING
+    (68) cteChar -> . CHAR
+    (67) cteInt -> . INT
+    (70) cteFloat -> . FLOAT
+    (71) cteId -> . IDENTIFICADOR constanteX
+
+    DELIMITADOR_ABRIR shift and go to state 41
+    OPERADOR_SR     shift and go to state 49
+    STRING          shift and go to state 46
+    CHAR            shift and go to state 42
+    INT             shift and go to state 51
+    FLOAT           shift and go to state 52
+    IDENTIFICADOR   shift and go to state 48
+
+    cteString                      shift and go to state 45
+    constante                      shift and go to state 47
+    cteInt                         shift and go to state 39
+    cteFloat                       shift and go to state 40
+    termino                        shift and go to state 43
+    exp                            shift and go to state 53
+    factor                         shift and go to state 44
+    cteChar                        shift and go to state 50
+    cteId                          shift and go to state 54
+
+state 20
+
+    (6) programaY -> funcion .
+
+    TIPO_STRING     reduce using rule 6 (programaY -> funcion .)
+    TIPO_CHAR       reduce using rule 6 (programaY -> funcion .)
+    TIPO_INT        reduce using rule 6 (programaY -> funcion .)
+    TIPO_FLOAT      reduce using rule 6 (programaY -> funcion .)
+    TIPO_VOID       reduce using rule 6 (programaY -> funcion .)
+    MAIN            reduce using rule 6 (programaY -> funcion .)
+
+
+state 21
+
+    (57) while -> WHILE . DELIMITADOR_ABRIR operacion inicioWhile DELIMITADOR_LLAVES bloqueCodigo finWhile
+
+    DELIMITADOR_ABRIR shift and go to state 55
+
+
+state 22
+
+    (47) escritura -> PRINT . DELIMITADOR_ABRIR operacion DELIMITADOR_CERRAR FIN_LINEA
+
+    DELIMITADOR_ABRIR shift and go to state 56
+
+
+state 23
+
+    (11) estatuto -> if .
+
+    IDENTIFICADOR   reduce using rule 11 (estatuto -> if .)
+    PRINT           reduce using rule 11 (estatuto -> if .)
+    IF              reduce using rule 11 (estatuto -> if .)
+    WHILE           reduce using rule 11 (estatuto -> if .)
+    TIPO_STRING     reduce using rule 11 (estatuto -> if .)
+    TIPO_CHAR       reduce using rule 11 (estatuto -> if .)
+    TIPO_INT        reduce using rule 11 (estatuto -> if .)
+    TIPO_FLOAT      reduce using rule 11 (estatuto -> if .)
+    TIPO_VOID       reduce using rule 11 (estatuto -> if .)
+    DELIMITADOR_LLAVES reduce using rule 11 (estatuto -> if .)
+    RETURN          reduce using rule 11 (estatuto -> if .)
+
+
+state 24
+
+    (13) estatuto -> tipo . IDENTIFICADOR var
+
+    IDENTIFICADOR   shift and go to state 57
+
+
+state 25
+
+    (7) bloqueCodigo -> estatuto . bloqueCodigo
+    (7) bloqueCodigo -> . estatuto bloqueCodigo
+    (8) bloqueCodigo -> .
+    (9) estatuto -> . escritura
+    (10) estatuto -> . IDENTIFICADOR estatutoX
+    (11) estatuto -> . if
+    (12) estatuto -> . while
+    (13) estatuto -> . tipo IDENTIFICADOR var
+    (47) escritura -> . PRINT DELIMITADOR_ABRIR operacion DELIMITADOR_CERRAR FIN_LINEA
+    (58) if -> . IF DELIMITADOR_ABRIR operacion inicioIf DELIMITADOR_LLAVES bloqueCodigo DELIMITADOR_LLAVES ifX
+    (57) while -> . WHILE DELIMITADOR_ABRIR operacion inicioWhile DELIMITADOR_LLAVES bloqueCodigo finWhile
+    (79) tipo -> . TIPO_STRING
+    (80) tipo -> . TIPO_CHAR
+    (81) tipo -> . TIPO_INT
+    (82) tipo -> . TIPO_FLOAT
+    (83) tipo -> . TIPO_VOID
+
+    DELIMITADOR_LLAVES reduce using rule 8 (bloqueCodigo -> .)
+    RETURN          reduce using rule 8 (bloqueCodigo -> .)
+    IDENTIFICADOR   shift and go to state 26
+    PRINT           shift and go to state 22
+    IF              shift and go to state 28
+    WHILE           shift and go to state 21
+    TIPO_STRING     shift and go to state 6
+    TIPO_CHAR       shift and go to state 4
+    TIPO_INT        shift and go to state 1
+    TIPO_FLOAT      shift and go to state 8
+    TIPO_VOID       shift and go to state 5
+
+    tipo                           shift and go to state 24
+    estatuto                       shift and go to state 25
+    while                          shift and go to state 29
+    bloqueCodigo                   shift and go to state 58
+    escritura                      shift and go to state 30
+    if                             shift and go to state 23
+
+state 26
+
+    (10) estatuto -> IDENTIFICADOR . estatutoX
+    (14) estatutoX -> . DELIMITADOR_ABRIR constanteY DELIMITADOR_CERRAR FIN_LINEA
+    (15) estatutoX -> . asignacionX OPERADOR_ASIGNACION estatutoY
+    (48) asignacionX -> . DELIMITADOR_CUADRADO exp DELIMITADOR_CUADRADO_CERRAR
+    (49) asignacionX -> .
+
+    DELIMITADOR_ABRIR shift and go to state 59
+    DELIMITADOR_CUADRADO shift and go to state 62
+    OPERADOR_ASIGNACION reduce using rule 49 (asignacionX -> .)
+
+    estatutoX                      shift and go to state 61
+    asignacionX                    shift and go to state 60
+
+state 27
+
+    (1) programa -> programaX inicioMain DELIMITADOR_LLAVES bloqueCodigo . DELIMITADOR_LLAVES
+
+    DELIMITADOR_LLAVES shift and go to state 63
+
+
+state 28
+
+    (58) if -> IF . DELIMITADOR_ABRIR operacion inicioIf DELIMITADOR_LLAVES bloqueCodigo DELIMITADOR_LLAVES ifX
+
+    DELIMITADOR_ABRIR shift and go to state 64
+
+
+state 29
+
+    (12) estatuto -> while .
+
+    IDENTIFICADOR   reduce using rule 12 (estatuto -> while .)
+    PRINT           reduce using rule 12 (estatuto -> while .)
+    IF              reduce using rule 12 (estatuto -> while .)
+    WHILE           reduce using rule 12 (estatuto -> while .)
+    TIPO_STRING     reduce using rule 12 (estatuto -> while .)
+    TIPO_CHAR       reduce using rule 12 (estatuto -> while .)
+    TIPO_INT        reduce using rule 12 (estatuto -> while .)
+    TIPO_FLOAT      reduce using rule 12 (estatuto -> while .)
+    TIPO_VOID       reduce using rule 12 (estatuto -> while .)
+    DELIMITADOR_LLAVES reduce using rule 12 (estatuto -> while .)
+    RETURN          reduce using rule 12 (estatuto -> while .)
+
+
+state 30
+
+    (9) estatuto -> escritura .
+
+    IDENTIFICADOR   reduce using rule 9 (estatuto -> escritura .)
+    PRINT           reduce using rule 9 (estatuto -> escritura .)
+    IF              reduce using rule 9 (estatuto -> escritura .)
+    WHILE           reduce using rule 9 (estatuto -> escritura .)
+    TIPO_STRING     reduce using rule 9 (estatuto -> escritura .)
+    TIPO_CHAR       reduce using rule 9 (estatuto -> escritura .)
+    TIPO_INT        reduce using rule 9 (estatuto -> escritura .)
+    TIPO_FLOAT      reduce using rule 9 (estatuto -> escritura .)
+    TIPO_VOID       reduce using rule 9 (estatuto -> escritura .)
+    DELIMITADOR_LLAVES reduce using rule 9 (estatuto -> escritura .)
+    RETURN          reduce using rule 9 (estatuto -> escritura .)
+
+
+state 31
+
+    (3) programaX -> tipo IDENTIFICADOR programaY programaX .
+
+    MAIN            reduce using rule 3 (programaX -> tipo IDENTIFICADOR programaY programaX .)
+
+
+state 32
+
+    (36) varZ -> SEPARADOR . IDENTIFICADOR varX
+
+    IDENTIFICADOR   shift and go to state 65
+
+
+state 33
+
+    (33) varX -> varY varZ .
+
+    FIN_LINEA       reduce using rule 33 (varX -> varY varZ .)
+
+
+state 34
+
+    (32) var -> varX FIN_LINEA .
+
+    IDENTIFICADOR   reduce using rule 32 (var -> varX FIN_LINEA .)
+    PRINT           reduce using rule 32 (var -> varX FIN_LINEA .)
+    IF              reduce using rule 32 (var -> varX FIN_LINEA .)
+    WHILE           reduce using rule 32 (var -> varX FIN_LINEA .)
+    TIPO_STRING     reduce using rule 32 (var -> varX FIN_LINEA .)
+    TIPO_CHAR       reduce using rule 32 (var -> varX FIN_LINEA .)
+    TIPO_INT        reduce using rule 32 (var -> varX FIN_LINEA .)
+    TIPO_FLOAT      reduce using rule 32 (var -> varX FIN_LINEA .)
+    TIPO_VOID       reduce using rule 32 (var -> varX FIN_LINEA .)
+    DELIMITADOR_LLAVES reduce using rule 32 (var -> varX FIN_LINEA .)
+    RETURN          reduce using rule 32 (var -> varX FIN_LINEA .)
+    MAIN            reduce using rule 32 (var -> varX FIN_LINEA .)
+
+
+state 35
+
+    (20) idFuncionX -> tipo . nomParametro idFuncionZ idFuncionY
+    (22) nomParametro -> . IDENTIFICADOR
+
+    IDENTIFICADOR   shift and go to state 66
+
+    nomParametro                   shift and go to state 67
+
+state 36
+
+    (19) idFuncion -> DELIMITADOR_ABRIR idFuncionX . DELIMITADOR_CERRAR
+
+    DELIMITADOR_CERRAR shift and go to state 68
+
+
+state 37
+
+    (28) inicioFuncion -> DELIMITADOR_LLAVES .
+
+    IDENTIFICADOR   reduce using rule 28 (inicioFuncion -> DELIMITADOR_LLAVES .)
+    PRINT           reduce using rule 28 (inicioFuncion -> DELIMITADOR_LLAVES .)
+    IF              reduce using rule 28 (inicioFuncion -> DELIMITADOR_LLAVES .)
+    WHILE           reduce using rule 28 (inicioFuncion -> DELIMITADOR_LLAVES .)
+    TIPO_STRING     reduce using rule 28 (inicioFuncion -> DELIMITADOR_LLAVES .)
+    TIPO_CHAR       reduce using rule 28 (inicioFuncion -> DELIMITADOR_LLAVES .)
+    TIPO_INT        reduce using rule 28 (inicioFuncion -> DELIMITADOR_LLAVES .)
+    TIPO_FLOAT      reduce using rule 28 (inicioFuncion -> DELIMITADOR_LLAVES .)
+    TIPO_VOID       reduce using rule 28 (inicioFuncion -> DELIMITADOR_LLAVES .)
+    RETURN          reduce using rule 28 (inicioFuncion -> DELIMITADOR_LLAVES .)
+
+
+state 38
+
+    (18) funcion -> idFuncion inicioFuncion . bloqueCodigo accionRetorno DELIMITADOR_LLAVES
+    (7) bloqueCodigo -> . estatuto bloqueCodigo
+    (8) bloqueCodigo -> .
+    (9) estatuto -> . escritura
+    (10) estatuto -> . IDENTIFICADOR estatutoX
+    (11) estatuto -> . if
+    (12) estatuto -> . while
+    (13) estatuto -> . tipo IDENTIFICADOR var
+    (47) escritura -> . PRINT DELIMITADOR_ABRIR operacion DELIMITADOR_CERRAR FIN_LINEA
+    (58) if -> . IF DELIMITADOR_ABRIR operacion inicioIf DELIMITADOR_LLAVES bloqueCodigo DELIMITADOR_LLAVES ifX
+    (57) while -> . WHILE DELIMITADOR_ABRIR operacion inicioWhile DELIMITADOR_LLAVES bloqueCodigo finWhile
+    (79) tipo -> . TIPO_STRING
+    (80) tipo -> . TIPO_CHAR
+    (81) tipo -> . TIPO_INT
+    (82) tipo -> . TIPO_FLOAT
+    (83) tipo -> . TIPO_VOID
+
+    RETURN          reduce using rule 8 (bloqueCodigo -> .)
+    IDENTIFICADOR   shift and go to state 26
+    PRINT           shift and go to state 22
+    IF              shift and go to state 28
+    WHILE           shift and go to state 21
+    TIPO_STRING     shift and go to state 6
+    TIPO_CHAR       shift and go to state 4
+    TIPO_INT        shift and go to state 1
+    TIPO_FLOAT      shift and go to state 8
+    TIPO_VOID       shift and go to state 5
+
+    tipo                           shift and go to state 24
+    estatuto                       shift and go to state 25
+    while                          shift and go to state 29
+    bloqueCodigo                   shift and go to state 69
+    if                             shift and go to state 23
+    escritura                      shift and go to state 30
+
+state 39
+
+    (64) constante -> cteInt .
+
+    OPERADOR_MD     reduce using rule 64 (constante -> cteInt .)
+    OPERADOR_SR     reduce using rule 64 (constante -> cteInt .)
+    DELIMITADOR_CUADRADO_CERRAR reduce using rule 64 (constante -> cteInt .)
+    OPERADOR_LOGICO reduce using rule 64 (constante -> cteInt .)
+    DELIMITADOR_CERRAR reduce using rule 64 (constante -> cteInt .)
+    OPERADOR_ANDOR  reduce using rule 64 (constante -> cteInt .)
+    FIN_LINEA       reduce using rule 64 (constante -> cteInt .)
+    SEPARADOR       reduce using rule 64 (constante -> cteInt .)
+
+
+state 40
+
+    (65) constante -> cteFloat .
+
+    OPERADOR_MD     reduce using rule 65 (constante -> cteFloat .)
+    OPERADOR_SR     reduce using rule 65 (constante -> cteFloat .)
+    DELIMITADOR_CUADRADO_CERRAR reduce using rule 65 (constante -> cteFloat .)
+    OPERADOR_LOGICO reduce using rule 65 (constante -> cteFloat .)
+    DELIMITADOR_CERRAR reduce using rule 65 (constante -> cteFloat .)
+    OPERADOR_ANDOR  reduce using rule 65 (constante -> cteFloat .)
+    FIN_LINEA       reduce using rule 65 (constante -> cteFloat .)
+    SEPARADOR       reduce using rule 65 (constante -> cteFloat .)
+
+
+state 41
+
+    (44) factor -> DELIMITADOR_ABRIR . expresion DELIMITADOR_CERRAR
+    (41) expresion -> . exp expresionX
+    (51) exp -> . termino expX
+    (54) termino -> . factor terminoX
+    (44) factor -> . DELIMITADOR_ABRIR expresion DELIMITADOR_CERRAR
+    (45) factor -> . constante
+    (46) factor -> . OPERADOR_SR constante
+    (62) constante -> . cteString
+    (63) constante -> . cteChar
+    (64) constante -> . cteInt
+    (65) constante -> . cteFloat
+    (66) constante -> . cteId
+    (69) cteString -> . STRING
+    (68) cteChar -> . CHAR
+    (67) cteInt -> . INT
+    (70) cteFloat -> . FLOAT
+    (71) cteId -> . IDENTIFICADOR constanteX
+
+    DELIMITADOR_ABRIR shift and go to state 41
+    OPERADOR_SR     shift and go to state 49
+    STRING          shift and go to state 46
+    CHAR            shift and go to state 42
+    INT             shift and go to state 51
+    FLOAT           shift and go to state 52
+    IDENTIFICADOR   shift and go to state 48
+
+    expresion                      shift and go to state 70
+    cteString                      shift and go to state 45
+    constante                      shift and go to state 47
+    cteInt                         shift and go to state 39
+    cteFloat                       shift and go to state 40
+    termino                        shift and go to state 43
+    exp                            shift and go to state 71
+    factor                         shift and go to state 44
+    cteChar                        shift and go to state 50
+    cteId                          shift and go to state 54
+
+state 42
+
+    (68) cteChar -> CHAR .
+
+    OPERADOR_MD     reduce using rule 68 (cteChar -> CHAR .)
+    OPERADOR_SR     reduce using rule 68 (cteChar -> CHAR .)
+    DELIMITADOR_CUADRADO_CERRAR reduce using rule 68 (cteChar -> CHAR .)
+    OPERADOR_LOGICO reduce using rule 68 (cteChar -> CHAR .)
+    DELIMITADOR_CERRAR reduce using rule 68 (cteChar -> CHAR .)
+    OPERADOR_ANDOR  reduce using rule 68 (cteChar -> CHAR .)
+    FIN_LINEA       reduce using rule 68 (cteChar -> CHAR .)
+    SEPARADOR       reduce using rule 68 (cteChar -> CHAR .)
+
+
+state 43
+
+    (51) exp -> termino . expX
+    (52) expX -> . OPERADOR_SR exp
+    (53) expX -> .
+
+    OPERADOR_SR     shift and go to state 72
+    DELIMITADOR_CUADRADO_CERRAR reduce using rule 53 (expX -> .)
+    OPERADOR_LOGICO reduce using rule 53 (expX -> .)
+    DELIMITADOR_CERRAR reduce using rule 53 (expX -> .)
+    OPERADOR_ANDOR  reduce using rule 53 (expX -> .)
+    FIN_LINEA       reduce using rule 53 (expX -> .)
+
+    expX                           shift and go to state 73
+
+state 44
+
+    (54) termino -> factor . terminoX
+    (55) terminoX -> . OPERADOR_MD termino
+    (56) terminoX -> .
+
+    OPERADOR_MD     shift and go to state 74
+    OPERADOR_SR     reduce using rule 56 (terminoX -> .)
+    DELIMITADOR_CUADRADO_CERRAR reduce using rule 56 (terminoX -> .)
+    OPERADOR_LOGICO reduce using rule 56 (terminoX -> .)
+    DELIMITADOR_CERRAR reduce using rule 56 (terminoX -> .)
+    OPERADOR_ANDOR  reduce using rule 56 (terminoX -> .)
+    FIN_LINEA       reduce using rule 56 (terminoX -> .)
+
+    terminoX                       shift and go to state 75
+
+state 45
+
+    (62) constante -> cteString .
+
+    OPERADOR_MD     reduce using rule 62 (constante -> cteString .)
+    OPERADOR_SR     reduce using rule 62 (constante -> cteString .)
+    DELIMITADOR_CUADRADO_CERRAR reduce using rule 62 (constante -> cteString .)
+    OPERADOR_LOGICO reduce using rule 62 (constante -> cteString .)
+    DELIMITADOR_CERRAR reduce using rule 62 (constante -> cteString .)
+    OPERADOR_ANDOR  reduce using rule 62 (constante -> cteString .)
+    FIN_LINEA       reduce using rule 62 (constante -> cteString .)
+    SEPARADOR       reduce using rule 62 (constante -> cteString .)
+
+
+state 46
+
+    (69) cteString -> STRING .
+
+    OPERADOR_MD     reduce using rule 69 (cteString -> STRING .)
+    OPERADOR_SR     reduce using rule 69 (cteString -> STRING .)
+    OPERADOR_LOGICO reduce using rule 69 (cteString -> STRING .)
+    OPERADOR_ANDOR  reduce using rule 69 (cteString -> STRING .)
+    DELIMITADOR_CERRAR reduce using rule 69 (cteString -> STRING .)
+    FIN_LINEA       reduce using rule 69 (cteString -> STRING .)
+    DELIMITADOR_CUADRADO_CERRAR reduce using rule 69 (cteString -> STRING .)
+    SEPARADOR       reduce using rule 69 (cteString -> STRING .)
+
+
+state 47
+
+    (45) factor -> constante .
+
+    OPERADOR_MD     reduce using rule 45 (factor -> constante .)
+    OPERADOR_SR     reduce using rule 45 (factor -> constante .)
+    DELIMITADOR_CERRAR reduce using rule 45 (factor -> constante .)
+    OPERADOR_ANDOR  reduce using rule 45 (factor -> constante .)
+    FIN_LINEA       reduce using rule 45 (factor -> constante .)
+    DELIMITADOR_CUADRADO_CERRAR reduce using rule 45 (factor -> constante .)
+    OPERADOR_LOGICO reduce using rule 45 (factor -> constante .)
+
+
+state 48
+
+    (71) cteId -> IDENTIFICADOR . constanteX
+    (72) constanteX -> . DELIMITADOR_CUADRADO exp DELIMITADOR_CUADRADO_CERRAR
+    (73) constanteX -> . DELIMITADOR_ABRIR constanteY DELIMITADOR_CERRAR
+    (74) constanteX -> .
+
+    DELIMITADOR_CUADRADO shift and go to state 78
+    DELIMITADOR_ABRIR shift and go to state 76
+    OPERADOR_MD     reduce using rule 74 (constanteX -> .)
+    OPERADOR_SR     reduce using rule 74 (constanteX -> .)
+    DELIMITADOR_CUADRADO_CERRAR reduce using rule 74 (constanteX -> .)
+    OPERADOR_LOGICO reduce using rule 74 (constanteX -> .)
+    DELIMITADOR_CERRAR reduce using rule 74 (constanteX -> .)
+    OPERADOR_ANDOR  reduce using rule 74 (constanteX -> .)
+    FIN_LINEA       reduce using rule 74 (constanteX -> .)
+    SEPARADOR       reduce using rule 74 (constanteX -> .)
+
+    constanteX                     shift and go to state 77
+
+state 49
+
+    (46) factor -> OPERADOR_SR . constante
+    (62) constante -> . cteString
+    (63) constante -> . cteChar
+    (64) constante -> . cteInt
+    (65) constante -> . cteFloat
+    (66) constante -> . cteId
+    (69) cteString -> . STRING
+    (68) cteChar -> . CHAR
+    (67) cteInt -> . INT
+    (70) cteFloat -> . FLOAT
+    (71) cteId -> . IDENTIFICADOR constanteX
+
+    STRING          shift and go to state 46
+    CHAR            shift and go to state 42
+    INT             shift and go to state 51
+    FLOAT           shift and go to state 52
+    IDENTIFICADOR   shift and go to state 48
+
+    cteString                      shift and go to state 45
+    constante                      shift and go to state 79
+    cteInt                         shift and go to state 39
+    cteFloat                       shift and go to state 40
+    cteChar                        shift and go to state 50
+    cteId                          shift and go to state 54
+
+state 50
+
+    (63) constante -> cteChar .
+
+    OPERADOR_MD     reduce using rule 63 (constante -> cteChar .)
+    OPERADOR_SR     reduce using rule 63 (constante -> cteChar .)
+    DELIMITADOR_CUADRADO_CERRAR reduce using rule 63 (constante -> cteChar .)
+    OPERADOR_LOGICO reduce using rule 63 (constante -> cteChar .)
+    DELIMITADOR_CERRAR reduce using rule 63 (constante -> cteChar .)
+    OPERADOR_ANDOR  reduce using rule 63 (constante -> cteChar .)
+    FIN_LINEA       reduce using rule 63 (constante -> cteChar .)
+    SEPARADOR       reduce using rule 63 (constante -> cteChar .)
+
+
+state 51
+
+    (67) cteInt -> INT .
+
+    SEPARADOR       reduce using rule 67 (cteInt -> INT .)
+    DELIMITADOR_CERRAR reduce using rule 67 (cteInt -> INT .)
+    OPERADOR_MD     reduce using rule 67 (cteInt -> INT .)
+    OPERADOR_SR     reduce using rule 67 (cteInt -> INT .)
+    OPERADOR_LOGICO reduce using rule 67 (cteInt -> INT .)
+    OPERADOR_ANDOR  reduce using rule 67 (cteInt -> INT .)
+    FIN_LINEA       reduce using rule 67 (cteInt -> INT .)
+    DELIMITADOR_CUADRADO_CERRAR reduce using rule 67 (cteInt -> INT .)
+
+
+state 52
+
+    (70) cteFloat -> FLOAT .
+
+    SEPARADOR       reduce using rule 70 (cteFloat -> FLOAT .)
+    DELIMITADOR_CERRAR reduce using rule 70 (cteFloat -> FLOAT .)
+    OPERADOR_MD     reduce using rule 70 (cteFloat -> FLOAT .)
+    OPERADOR_SR     reduce using rule 70 (cteFloat -> FLOAT .)
+    OPERADOR_LOGICO reduce using rule 70 (cteFloat -> FLOAT .)
+    OPERADOR_ANDOR  reduce using rule 70 (cteFloat -> FLOAT .)
+    DELIMITADOR_CUADRADO_CERRAR reduce using rule 70 (cteFloat -> FLOAT .)
+    FIN_LINEA       reduce using rule 70 (cteFloat -> FLOAT .)
+
+
+state 53
+
+    (34) varY -> DELIMITADOR_CUADRADO exp . DELIMITADOR_CUADRADO_CERRAR
+
+    DELIMITADOR_CUADRADO_CERRAR shift and go to state 80
+
+
+state 54
+
+    (66) constante -> cteId .
+
+    OPERADOR_MD     reduce using rule 66 (constante -> cteId .)
+    OPERADOR_SR     reduce using rule 66 (constante -> cteId .)
+    DELIMITADOR_CUADRADO_CERRAR reduce using rule 66 (constante -> cteId .)
+    OPERADOR_LOGICO reduce using rule 66 (constante -> cteId .)
+    DELIMITADOR_CERRAR reduce using rule 66 (constante -> cteId .)
+    OPERADOR_ANDOR  reduce using rule 66 (constante -> cteId .)
+    FIN_LINEA       reduce using rule 66 (constante -> cteId .)
+    SEPARADOR       reduce using rule 66 (constante -> cteId .)
+
+
+state 55
+
+    (57) while -> WHILE DELIMITADOR_ABRIR . operacion inicioWhile DELIMITADOR_LLAVES bloqueCodigo finWhile
+    (38) operacion -> . expresion operacionX
+    (41) expresion -> . exp expresionX
+    (51) exp -> . termino expX
+    (54) termino -> . factor terminoX
+    (44) factor -> . DELIMITADOR_ABRIR expresion DELIMITADOR_CERRAR
+    (45) factor -> . constante
+    (46) factor -> . OPERADOR_SR constante
+    (62) constante -> . cteString
+    (63) constante -> . cteChar
+    (64) constante -> . cteInt
+    (65) constante -> . cteFloat
+    (66) constante -> . cteId
+    (69) cteString -> . STRING
+    (68) cteChar -> . CHAR
+    (67) cteInt -> . INT
+    (70) cteFloat -> . FLOAT
+    (71) cteId -> . IDENTIFICADOR constanteX
+
+    DELIMITADOR_ABRIR shift and go to state 41
+    OPERADOR_SR     shift and go to state 49
+    STRING          shift and go to state 46
+    CHAR            shift and go to state 42
+    INT             shift and go to state 51
+    FLOAT           shift and go to state 52
+    IDENTIFICADOR   shift and go to state 48
+
+    expresion                      shift and go to state 82
+    cteString                      shift and go to state 45
+    constante                      shift and go to state 47
+    operacion                      shift and go to state 81
+    cteFloat                       shift and go to state 40
+    exp                            shift and go to state 71
+    factor                         shift and go to state 44
+    cteChar                        shift and go to state 50
+    cteInt                         shift and go to state 39
+    cteId                          shift and go to state 54
+    termino                        shift and go to state 43
+
+state 56
+
+    (47) escritura -> PRINT DELIMITADOR_ABRIR . operacion DELIMITADOR_CERRAR FIN_LINEA
+    (38) operacion -> . expresion operacionX
+    (41) expresion -> . exp expresionX
+    (51) exp -> . termino expX
+    (54) termino -> . factor terminoX
+    (44) factor -> . DELIMITADOR_ABRIR expresion DELIMITADOR_CERRAR
+    (45) factor -> . constante
+    (46) factor -> . OPERADOR_SR constante
+    (62) constante -> . cteString
+    (63) constante -> . cteChar
+    (64) constante -> . cteInt
+    (65) constante -> . cteFloat
+    (66) constante -> . cteId
+    (69) cteString -> . STRING
+    (68) cteChar -> . CHAR
+    (67) cteInt -> . INT
+    (70) cteFloat -> . FLOAT
+    (71) cteId -> . IDENTIFICADOR constanteX
+
+    DELIMITADOR_ABRIR shift and go to state 41
+    OPERADOR_SR     shift and go to state 49
+    STRING          shift and go to state 46
+    CHAR            shift and go to state 42
+    INT             shift and go to state 51
+    FLOAT           shift and go to state 52
+    IDENTIFICADOR   shift and go to state 48
+
+    expresion                      shift and go to state 82
+    cteString                      shift and go to state 45
+    operacion                      shift and go to state 83
+    constante                      shift and go to state 47
+    cteInt                         shift and go to state 39
+    cteFloat                       shift and go to state 40
+    termino                        shift and go to state 43
+    exp                            shift and go to state 71
+    factor                         shift and go to state 44
+    cteChar                        shift and go to state 50
+    cteId                          shift and go to state 54
+
+state 57
+
+    (13) estatuto -> tipo IDENTIFICADOR . var
+    (32) var -> . varX FIN_LINEA
+    (33) varX -> . varY varZ
+    (34) varY -> . DELIMITADOR_CUADRADO exp DELIMITADOR_CUADRADO_CERRAR
+    (35) varY -> .
+
+    DELIMITADOR_CUADRADO shift and go to state 19
+    SEPARADOR       reduce using rule 35 (varY -> .)
+    FIN_LINEA       reduce using rule 35 (varY -> .)
+
+    varY                           shift and go to state 14
+    varX                           shift and go to state 15
+    var                            shift and go to state 84
+
+state 58
+
+    (7) bloqueCodigo -> estatuto bloqueCodigo .
+
+    DELIMITADOR_LLAVES reduce using rule 7 (bloqueCodigo -> estatuto bloqueCodigo .)
+    RETURN          reduce using rule 7 (bloqueCodigo -> estatuto bloqueCodigo .)
+
+
+state 59
+
+    (14) estatutoX -> DELIMITADOR_ABRIR . constanteY DELIMITADOR_CERRAR FIN_LINEA
+    (75) constanteY -> . constante constanteZ
+    (76) constanteY -> .
+    (62) constante -> . cteString
+    (63) constante -> . cteChar
+    (64) constante -> . cteInt
+    (65) constante -> . cteFloat
+    (66) constante -> . cteId
+    (69) cteString -> . STRING
+    (68) cteChar -> . CHAR
+    (67) cteInt -> . INT
+    (70) cteFloat -> . FLOAT
+    (71) cteId -> . IDENTIFICADOR constanteX
+
+    DELIMITADOR_CERRAR reduce using rule 76 (constanteY -> .)
+    STRING          shift and go to state 46
+    CHAR            shift and go to state 42
+    INT             shift and go to state 51
+    FLOAT           shift and go to state 52
+    IDENTIFICADOR   shift and go to state 48
+
+    cteString                      shift and go to state 45
+    constante                      shift and go to state 85
+    cteInt                         shift and go to state 39
+    cteFloat                       shift and go to state 40
+    constanteY                     shift and go to state 86
+    cteChar                        shift and go to state 50
+    cteId                          shift and go to state 54
+
+state 60
+
+    (15) estatutoX -> asignacionX . OPERADOR_ASIGNACION estatutoY
+
+    OPERADOR_ASIGNACION shift and go to state 87
+
+
+state 61
+
+    (10) estatuto -> IDENTIFICADOR estatutoX .
+
+    IDENTIFICADOR   reduce using rule 10 (estatuto -> IDENTIFICADOR estatutoX .)
+    PRINT           reduce using rule 10 (estatuto -> IDENTIFICADOR estatutoX .)
+    IF              reduce using rule 10 (estatuto -> IDENTIFICADOR estatutoX .)
+    WHILE           reduce using rule 10 (estatuto -> IDENTIFICADOR estatutoX .)
+    TIPO_STRING     reduce using rule 10 (estatuto -> IDENTIFICADOR estatutoX .)
+    TIPO_CHAR       reduce using rule 10 (estatuto -> IDENTIFICADOR estatutoX .)
+    TIPO_INT        reduce using rule 10 (estatuto -> IDENTIFICADOR estatutoX .)
+    TIPO_FLOAT      reduce using rule 10 (estatuto -> IDENTIFICADOR estatutoX .)
+    TIPO_VOID       reduce using rule 10 (estatuto -> IDENTIFICADOR estatutoX .)
+    DELIMITADOR_LLAVES reduce using rule 10 (estatuto -> IDENTIFICADOR estatutoX .)
+    RETURN          reduce using rule 10 (estatuto -> IDENTIFICADOR estatutoX .)
+
+
+state 62
+
+    (48) asignacionX -> DELIMITADOR_CUADRADO . exp DELIMITADOR_CUADRADO_CERRAR
+    (51) exp -> . termino expX
+    (54) termino -> . factor terminoX
+    (44) factor -> . DELIMITADOR_ABRIR expresion DELIMITADOR_CERRAR
+    (45) factor -> . constante
+    (46) factor -> . OPERADOR_SR constante
+    (62) constante -> . cteString
+    (63) constante -> . cteChar
+    (64) constante -> . cteInt
+    (65) constante -> . cteFloat
+    (66) constante -> . cteId
+    (69) cteString -> . STRING
+    (68) cteChar -> . CHAR
+    (67) cteInt -> . INT
+    (70) cteFloat -> . FLOAT
+    (71) cteId -> . IDENTIFICADOR constanteX
+
+    DELIMITADOR_ABRIR shift and go to state 41
+    OPERADOR_SR     shift and go to state 49
+    STRING          shift and go to state 46
+    CHAR            shift and go to state 42
+    INT             shift and go to state 51
+    FLOAT           shift and go to state 52
+    IDENTIFICADOR   shift and go to state 48
+
+    cteString                      shift and go to state 45
+    constante                      shift and go to state 47
+    cteInt                         shift and go to state 39
+    cteFloat                       shift and go to state 40
+    termino                        shift and go to state 43
+    exp                            shift and go to state 88
+    factor                         shift and go to state 44
+    cteChar                        shift and go to state 50
+    cteId                          shift and go to state 54
+
+state 63
+
+    (1) programa -> programaX inicioMain DELIMITADOR_LLAVES bloqueCodigo DELIMITADOR_LLAVES .
+
+    $end            reduce using rule 1 (programa -> programaX inicioMain DELIMITADOR_LLAVES bloqueCodigo DELIMITADOR_LLAVES .)
+
+
+state 64
+
+    (58) if -> IF DELIMITADOR_ABRIR . operacion inicioIf DELIMITADOR_LLAVES bloqueCodigo DELIMITADOR_LLAVES ifX
+    (38) operacion -> . expresion operacionX
+    (41) expresion -> . exp expresionX
+    (51) exp -> . termino expX
+    (54) termino -> . factor terminoX
+    (44) factor -> . DELIMITADOR_ABRIR expresion DELIMITADOR_CERRAR
+    (45) factor -> . constante
+    (46) factor -> . OPERADOR_SR constante
+    (62) constante -> . cteString
+    (63) constante -> . cteChar
+    (64) constante -> . cteInt
+    (65) constante -> . cteFloat
+    (66) constante -> . cteId
+    (69) cteString -> . STRING
+    (68) cteChar -> . CHAR
+    (67) cteInt -> . INT
+    (70) cteFloat -> . FLOAT
+    (71) cteId -> . IDENTIFICADOR constanteX
+
+    DELIMITADOR_ABRIR shift and go to state 41
+    OPERADOR_SR     shift and go to state 49
+    STRING          shift and go to state 46
+    CHAR            shift and go to state 42
+    INT             shift and go to state 51
+    FLOAT           shift and go to state 52
+    IDENTIFICADOR   shift and go to state 48
+
+    expresion                      shift and go to state 82
+    cteString                      shift and go to state 45
+    operacion                      shift and go to state 89
+    constante                      shift and go to state 47
+    cteInt                         shift and go to state 39
+    exp                            shift and go to state 71
+    factor                         shift and go to state 44
+    cteChar                        shift and go to state 50
+    cteFloat                       shift and go to state 40
+    cteId                          shift and go to state 54
+    termino                        shift and go to state 43
+
+state 65
+
+    (36) varZ -> SEPARADOR IDENTIFICADOR . varX
+    (33) varX -> . varY varZ
+    (34) varY -> . DELIMITADOR_CUADRADO exp DELIMITADOR_CUADRADO_CERRAR
+    (35) varY -> .
+
+    DELIMITADOR_CUADRADO shift and go to state 19
+    SEPARADOR       reduce using rule 35 (varY -> .)
+    FIN_LINEA       reduce using rule 35 (varY -> .)
+
+    varY                           shift and go to state 14
+    varX                           shift and go to state 90
+
+state 66
+
+    (22) nomParametro -> IDENTIFICADOR .
+
+    DELIMITADOR_CUADRADO reduce using rule 22 (nomParametro -> IDENTIFICADOR .)
+    SEPARADOR       reduce using rule 22 (nomParametro -> IDENTIFICADOR .)
+    DELIMITADOR_CERRAR reduce using rule 22 (nomParametro -> IDENTIFICADOR .)
+
+
+state 67
+
+    (20) idFuncionX -> tipo nomParametro . idFuncionZ idFuncionY
+    (26) idFuncionZ -> . DELIMITADOR_CUADRADO exp DELIMITADOR_CUADRADO_CERRAR
+    (27) idFuncionZ -> .
+
+    DELIMITADOR_CUADRADO shift and go to state 91
+    SEPARADOR       reduce using rule 27 (idFuncionZ -> .)
+    DELIMITADOR_CERRAR reduce using rule 27 (idFuncionZ -> .)
+
+    idFuncionZ                     shift and go to state 92
+
+state 68
+
+    (19) idFuncion -> DELIMITADOR_ABRIR idFuncionX DELIMITADOR_CERRAR .
+
+    DELIMITADOR_LLAVES reduce using rule 19 (idFuncion -> DELIMITADOR_ABRIR idFuncionX DELIMITADOR_CERRAR .)
+
+
+state 69
+
+    (18) funcion -> idFuncion inicioFuncion bloqueCodigo . accionRetorno DELIMITADOR_LLAVES
+    (29) accionRetorno -> . RETURN accionRetornoX FIN_LINEA
+
+    RETURN          shift and go to state 94
+
+    accionRetorno                  shift and go to state 93
+
+state 70
+
+    (44) factor -> DELIMITADOR_ABRIR expresion . DELIMITADOR_CERRAR
+
+    DELIMITADOR_CERRAR shift and go to state 95
+
+
+state 71
+
+    (41) expresion -> exp . expresionX
+    (42) expresionX -> . OPERADOR_LOGICO exp
+    (43) expresionX -> .
+
+    OPERADOR_LOGICO shift and go to state 97
+    DELIMITADOR_CERRAR reduce using rule 43 (expresionX -> .)
+    OPERADOR_ANDOR  reduce using rule 43 (expresionX -> .)
+    FIN_LINEA       reduce using rule 43 (expresionX -> .)
+
+    expresionX                     shift and go to state 96
+
+state 72
+
+    (52) expX -> OPERADOR_SR . exp
+    (51) exp -> . termino expX
+    (54) termino -> . factor terminoX
+    (44) factor -> . DELIMITADOR_ABRIR expresion DELIMITADOR_CERRAR
+    (45) factor -> . constante
+    (46) factor -> . OPERADOR_SR constante
+    (62) constante -> . cteString
+    (63) constante -> . cteChar
+    (64) constante -> . cteInt
+    (65) constante -> . cteFloat
+    (66) constante -> . cteId
+    (69) cteString -> . STRING
+    (68) cteChar -> . CHAR
+    (67) cteInt -> . INT
+    (70) cteFloat -> . FLOAT
+    (71) cteId -> . IDENTIFICADOR constanteX
+
+    DELIMITADOR_ABRIR shift and go to state 41
+    OPERADOR_SR     shift and go to state 49
+    STRING          shift and go to state 46
+    CHAR            shift and go to state 42
+    INT             shift and go to state 51
+    FLOAT           shift and go to state 52
+    IDENTIFICADOR   shift and go to state 48
+
+    cteString                      shift and go to state 45
+    constante                      shift and go to state 47
+    cteInt                         shift and go to state 39
+    cteFloat                       shift and go to state 40
+    termino                        shift and go to state 43
+    exp                            shift and go to state 98
+    factor                         shift and go to state 44
+    cteChar                        shift and go to state 50
+    cteId                          shift and go to state 54
+
+state 73
+
+    (51) exp -> termino expX .
+
+    DELIMITADOR_CERRAR reduce using rule 51 (exp -> termino expX .)
+    OPERADOR_ANDOR  reduce using rule 51 (exp -> termino expX .)
+    FIN_LINEA       reduce using rule 51 (exp -> termino expX .)
+    DELIMITADOR_CUADRADO_CERRAR reduce using rule 51 (exp -> termino expX .)
+    OPERADOR_LOGICO reduce using rule 51 (exp -> termino expX .)
+
+
+state 74
+
+    (55) terminoX -> OPERADOR_MD . termino
+    (54) termino -> . factor terminoX
+    (44) factor -> . DELIMITADOR_ABRIR expresion DELIMITADOR_CERRAR
+    (45) factor -> . constante
+    (46) factor -> . OPERADOR_SR constante
+    (62) constante -> . cteString
+    (63) constante -> . cteChar
+    (64) constante -> . cteInt
+    (65) constante -> . cteFloat
+    (66) constante -> . cteId
+    (69) cteString -> . STRING
+    (68) cteChar -> . CHAR
+    (67) cteInt -> . INT
+    (70) cteFloat -> . FLOAT
+    (71) cteId -> . IDENTIFICADOR constanteX
+
+    DELIMITADOR_ABRIR shift and go to state 41
+    OPERADOR_SR     shift and go to state 49
+    STRING          shift and go to state 46
+    CHAR            shift and go to state 42
+    INT             shift and go to state 51
+    FLOAT           shift and go to state 52
+    IDENTIFICADOR   shift and go to state 48
+
+    cteString                      shift and go to state 45
+    constante                      shift and go to state 47
+    cteInt                         shift and go to state 39
+    cteFloat                       shift and go to state 40
+    termino                        shift and go to state 99
+    factor                         shift and go to state 44
+    cteChar                        shift and go to state 50
+    cteId                          shift and go to state 54
+
+state 75
+
+    (54) termino -> factor terminoX .
+
+    OPERADOR_SR     reduce using rule 54 (termino -> factor terminoX .)
+    DELIMITADOR_CUADRADO_CERRAR reduce using rule 54 (termino -> factor terminoX .)
+    OPERADOR_LOGICO reduce using rule 54 (termino -> factor terminoX .)
+    DELIMITADOR_CERRAR reduce using rule 54 (termino -> factor terminoX .)
+    OPERADOR_ANDOR  reduce using rule 54 (termino -> factor terminoX .)
+    FIN_LINEA       reduce using rule 54 (termino -> factor terminoX .)
+
+
+state 76
+
+    (73) constanteX -> DELIMITADOR_ABRIR . constanteY DELIMITADOR_CERRAR
+    (75) constanteY -> . constante constanteZ
+    (76) constanteY -> .
+    (62) constante -> . cteString
+    (63) constante -> . cteChar
+    (64) constante -> . cteInt
+    (65) constante -> . cteFloat
+    (66) constante -> . cteId
+    (69) cteString -> . STRING
+    (68) cteChar -> . CHAR
+    (67) cteInt -> . INT
+    (70) cteFloat -> . FLOAT
+    (71) cteId -> . IDENTIFICADOR constanteX
+
+    DELIMITADOR_CERRAR reduce using rule 76 (constanteY -> .)
+    STRING          shift and go to state 46
+    CHAR            shift and go to state 42
+    INT             shift and go to state 51
+    FLOAT           shift and go to state 52
+    IDENTIFICADOR   shift and go to state 48
+
+    cteString                      shift and go to state 45
+    constante                      shift and go to state 85
+    cteInt                         shift and go to state 39
+    cteFloat                       shift and go to state 40
+    constanteY                     shift and go to state 100
+    cteChar                        shift and go to state 50
+    cteId                          shift and go to state 54
+
+state 77
+
+    (71) cteId -> IDENTIFICADOR constanteX .
+
+    OPERADOR_MD     reduce using rule 71 (cteId -> IDENTIFICADOR constanteX .)
+    OPERADOR_SR     reduce using rule 71 (cteId -> IDENTIFICADOR constanteX .)
+    OPERADOR_LOGICO reduce using rule 71 (cteId -> IDENTIFICADOR constanteX .)
+    OPERADOR_ANDOR  reduce using rule 71 (cteId -> IDENTIFICADOR constanteX .)
+    FIN_LINEA       reduce using rule 71 (cteId -> IDENTIFICADOR constanteX .)
+    DELIMITADOR_CUADRADO_CERRAR reduce using rule 71 (cteId -> IDENTIFICADOR constanteX .)
+    DELIMITADOR_CERRAR reduce using rule 71 (cteId -> IDENTIFICADOR constanteX .)
+    SEPARADOR       reduce using rule 71 (cteId -> IDENTIFICADOR constanteX .)
+
+
+state 78
+
+    (72) constanteX -> DELIMITADOR_CUADRADO . exp DELIMITADOR_CUADRADO_CERRAR
+    (51) exp -> . termino expX
+    (54) termino -> . factor terminoX
+    (44) factor -> . DELIMITADOR_ABRIR expresion DELIMITADOR_CERRAR
+    (45) factor -> . constante
+    (46) factor -> . OPERADOR_SR constante
+    (62) constante -> . cteString
+    (63) constante -> . cteChar
+    (64) constante -> . cteInt
+    (65) constante -> . cteFloat
+    (66) constante -> . cteId
+    (69) cteString -> . STRING
+    (68) cteChar -> . CHAR
+    (67) cteInt -> . INT
+    (70) cteFloat -> . FLOAT
+    (71) cteId -> . IDENTIFICADOR constanteX
+
+    DELIMITADOR_ABRIR shift and go to state 41
+    OPERADOR_SR     shift and go to state 49
+    STRING          shift and go to state 46
+    CHAR            shift and go to state 42
+    INT             shift and go to state 51
+    FLOAT           shift and go to state 52
+    IDENTIFICADOR   shift and go to state 48
+
+    cteString                      shift and go to state 45
+    constante                      shift and go to state 47
+    cteInt                         shift and go to state 39
+    cteFloat                       shift and go to state 40
+    termino                        shift and go to state 43
+    exp                            shift and go to state 101
+    factor                         shift and go to state 44
+    cteChar                        shift and go to state 50
+    cteId                          shift and go to state 54
+
+state 79
+
+    (46) factor -> OPERADOR_SR constante .
+
+    OPERADOR_MD     reduce using rule 46 (factor -> OPERADOR_SR constante .)
+    OPERADOR_SR     reduce using rule 46 (factor -> OPERADOR_SR constante .)
+    DELIMITADOR_CERRAR reduce using rule 46 (factor -> OPERADOR_SR constante .)
+    OPERADOR_ANDOR  reduce using rule 46 (factor -> OPERADOR_SR constante .)
+    FIN_LINEA       reduce using rule 46 (factor -> OPERADOR_SR constante .)
+    DELIMITADOR_CUADRADO_CERRAR reduce using rule 46 (factor -> OPERADOR_SR constante .)
+    OPERADOR_LOGICO reduce using rule 46 (factor -> OPERADOR_SR constante .)
+
+
+state 80
+
+    (34) varY -> DELIMITADOR_CUADRADO exp DELIMITADOR_CUADRADO_CERRAR .
+
+    SEPARADOR       reduce using rule 34 (varY -> DELIMITADOR_CUADRADO exp DELIMITADOR_CUADRADO_CERRAR .)
+    FIN_LINEA       reduce using rule 34 (varY -> DELIMITADOR_CUADRADO exp DELIMITADOR_CUADRADO_CERRAR .)
+
+
+state 81
+
+    (57) while -> WHILE DELIMITADOR_ABRIR operacion . inicioWhile DELIMITADOR_LLAVES bloqueCodigo finWhile
+    (84) inicioWhile -> . DELIMITADOR_CERRAR
+
+    DELIMITADOR_CERRAR shift and go to state 103
+
+    inicioWhile                    shift and go to state 102
+
+state 82
+
+    (38) operacion -> expresion . operacionX
+    (39) operacionX -> . OPERADOR_ANDOR operacion
+    (40) operacionX -> .
+
+    OPERADOR_ANDOR  shift and go to state 105
+    DELIMITADOR_CERRAR reduce using rule 40 (operacionX -> .)
+    FIN_LINEA       reduce using rule 40 (operacionX -> .)
+
+    operacionX                     shift and go to state 104
+
+state 83
+
+    (47) escritura -> PRINT DELIMITADOR_ABRIR operacion . DELIMITADOR_CERRAR FIN_LINEA
+
+    DELIMITADOR_CERRAR shift and go to state 106
+
+
+state 84
+
+    (13) estatuto -> tipo IDENTIFICADOR var .
+
+    IDENTIFICADOR   reduce using rule 13 (estatuto -> tipo IDENTIFICADOR var .)
+    PRINT           reduce using rule 13 (estatuto -> tipo IDENTIFICADOR var .)
+    IF              reduce using rule 13 (estatuto -> tipo IDENTIFICADOR var .)
+    WHILE           reduce using rule 13 (estatuto -> tipo IDENTIFICADOR var .)
+    TIPO_STRING     reduce using rule 13 (estatuto -> tipo IDENTIFICADOR var .)
+    TIPO_CHAR       reduce using rule 13 (estatuto -> tipo IDENTIFICADOR var .)
+    TIPO_INT        reduce using rule 13 (estatuto -> tipo IDENTIFICADOR var .)
+    TIPO_FLOAT      reduce using rule 13 (estatuto -> tipo IDENTIFICADOR var .)
+    TIPO_VOID       reduce using rule 13 (estatuto -> tipo IDENTIFICADOR var .)
+    DELIMITADOR_LLAVES reduce using rule 13 (estatuto -> tipo IDENTIFICADOR var .)
+    RETURN          reduce using rule 13 (estatuto -> tipo IDENTIFICADOR var .)
+
+
+state 85
+
+    (75) constanteY -> constante . constanteZ
+    (77) constanteZ -> . SEPARADOR constanteY
+    (78) constanteZ -> .
+
+    SEPARADOR       shift and go to state 108
+    DELIMITADOR_CERRAR reduce using rule 78 (constanteZ -> .)
+
+    constanteZ                     shift and go to state 107
+
+state 86
+
+    (14) estatutoX -> DELIMITADOR_ABRIR constanteY . DELIMITADOR_CERRAR FIN_LINEA
+
+    DELIMITADOR_CERRAR shift and go to state 109
+
+
+state 87
+
+    (15) estatutoX -> asignacionX OPERADOR_ASIGNACION . estatutoY
+    (16) estatutoY -> . input
+    (17) estatutoY -> . asignacionY FIN_LINEA
+    (61) input -> . INPUT DELIMITADOR_ABRIR tipo DELIMITADOR_CERRAR FIN_LINEA
+    (50) asignacionY -> . operacion
+    (38) operacion -> . expresion operacionX
+    (41) expresion -> . exp expresionX
+    (51) exp -> . termino expX
+    (54) termino -> . factor terminoX
+    (44) factor -> . DELIMITADOR_ABRIR expresion DELIMITADOR_CERRAR
+    (45) factor -> . constante
+    (46) factor -> . OPERADOR_SR constante
+    (62) constante -> . cteString
+    (63) constante -> . cteChar
+    (64) constante -> . cteInt
+    (65) constante -> . cteFloat
+    (66) constante -> . cteId
+    (69) cteString -> . STRING
+    (68) cteChar -> . CHAR
+    (67) cteInt -> . INT
+    (70) cteFloat -> . FLOAT
+    (71) cteId -> . IDENTIFICADOR constanteX
+
+    INPUT           shift and go to state 113
+    DELIMITADOR_ABRIR shift and go to state 41
+    OPERADOR_SR     shift and go to state 49
+    STRING          shift and go to state 46
+    CHAR            shift and go to state 42
+    INT             shift and go to state 51
+    FLOAT           shift and go to state 52
+    IDENTIFICADOR   shift and go to state 48
+
+    expresion                      shift and go to state 82
+    factor                         shift and go to state 44
+    cteString                      shift and go to state 45
+    exp                            shift and go to state 71
+    operacion                      shift and go to state 112
+    constante                      shift and go to state 47
+    cteChar                        shift and go to state 50
+    cteFloat                       shift and go to state 40
+    termino                        shift and go to state 43
+    asignacionY                    shift and go to state 110
+    input                          shift and go to state 111
+    estatutoY                      shift and go to state 114
+    cteInt                         shift and go to state 39
+    cteId                          shift and go to state 54
+
+state 88
+
+    (48) asignacionX -> DELIMITADOR_CUADRADO exp . DELIMITADOR_CUADRADO_CERRAR
+
+    DELIMITADOR_CUADRADO_CERRAR shift and go to state 115
+
+
+state 89
+
+    (58) if -> IF DELIMITADOR_ABRIR operacion . inicioIf DELIMITADOR_LLAVES bloqueCodigo DELIMITADOR_LLAVES ifX
+    (86) inicioIf -> . DELIMITADOR_CERRAR
+
+    DELIMITADOR_CERRAR shift and go to state 117
+
+    inicioIf                       shift and go to state 116
+
+state 90
+
+    (36) varZ -> SEPARADOR IDENTIFICADOR varX .
+
+    FIN_LINEA       reduce using rule 36 (varZ -> SEPARADOR IDENTIFICADOR varX .)
+
+
+state 91
+
+    (26) idFuncionZ -> DELIMITADOR_CUADRADO . exp DELIMITADOR_CUADRADO_CERRAR
+    (51) exp -> . termino expX
+    (54) termino -> . factor terminoX
+    (44) factor -> . DELIMITADOR_ABRIR expresion DELIMITADOR_CERRAR
+    (45) factor -> . constante
+    (46) factor -> . OPERADOR_SR constante
+    (62) constante -> . cteString
+    (63) constante -> . cteChar
+    (64) constante -> . cteInt
+    (65) constante -> . cteFloat
+    (66) constante -> . cteId
+    (69) cteString -> . STRING
+    (68) cteChar -> . CHAR
+    (67) cteInt -> . INT
+    (70) cteFloat -> . FLOAT
+    (71) cteId -> . IDENTIFICADOR constanteX
+
+    DELIMITADOR_ABRIR shift and go to state 41
+    OPERADOR_SR     shift and go to state 49
+    STRING          shift and go to state 46
+    CHAR            shift and go to state 42
+    INT             shift and go to state 51
+    FLOAT           shift and go to state 52
+    IDENTIFICADOR   shift and go to state 48
+
+    cteString                      shift and go to state 45
+    constante                      shift and go to state 47
+    cteInt                         shift and go to state 39
+    cteFloat                       shift and go to state 40
+    termino                        shift and go to state 43
+    exp                            shift and go to state 118
+    factor                         shift and go to state 44
+    cteChar                        shift and go to state 50
+    cteId                          shift and go to state 54
+
+state 92
+
+    (20) idFuncionX -> tipo nomParametro idFuncionZ . idFuncionY
+    (23) idFuncionY -> . nextParam idFuncionX
+    (24) idFuncionY -> .
+    (25) nextParam -> . SEPARADOR
+
+    DELIMITADOR_CERRAR reduce using rule 24 (idFuncionY -> .)
+    SEPARADOR       shift and go to state 120
+
+    nextParam                      shift and go to state 119
+    idFuncionY                     shift and go to state 121
+
+state 93
+
+    (18) funcion -> idFuncion inicioFuncion bloqueCodigo accionRetorno . DELIMITADOR_LLAVES
+
+    DELIMITADOR_LLAVES shift and go to state 122
+
+
+state 94
+
+    (29) accionRetorno -> RETURN . accionRetornoX FIN_LINEA
+    (30) accionRetornoX -> . constante
+    (31) accionRetornoX -> .
+    (62) constante -> . cteString
+    (63) constante -> . cteChar
+    (64) constante -> . cteInt
+    (65) constante -> . cteFloat
+    (66) constante -> . cteId
+    (69) cteString -> . STRING
+    (68) cteChar -> . CHAR
+    (67) cteInt -> . INT
+    (70) cteFloat -> . FLOAT
+    (71) cteId -> . IDENTIFICADOR constanteX
+
+    FIN_LINEA       reduce using rule 31 (accionRetornoX -> .)
+    STRING          shift and go to state 46
+    CHAR            shift and go to state 42
+    INT             shift and go to state 51
+    FLOAT           shift and go to state 52
+    IDENTIFICADOR   shift and go to state 48
+
+    cteString                      shift and go to state 45
+    constante                      shift and go to state 123
+    cteId                          shift and go to state 54
+    cteInt                         shift and go to state 39
+    cteFloat                       shift and go to state 40
+    cteChar                        shift and go to state 50
+    accionRetornoX                 shift and go to state 124
+
+state 95
+
+    (44) factor -> DELIMITADOR_ABRIR expresion DELIMITADOR_CERRAR .
+
+    OPERADOR_MD     reduce using rule 44 (factor -> DELIMITADOR_ABRIR expresion DELIMITADOR_CERRAR .)
+    OPERADOR_SR     reduce using rule 44 (factor -> DELIMITADOR_ABRIR expresion DELIMITADOR_CERRAR .)
+    DELIMITADOR_CERRAR reduce using rule 44 (factor -> DELIMITADOR_ABRIR expresion DELIMITADOR_CERRAR .)
+    OPERADOR_ANDOR  reduce using rule 44 (factor -> DELIMITADOR_ABRIR expresion DELIMITADOR_CERRAR .)
+    FIN_LINEA       reduce using rule 44 (factor -> DELIMITADOR_ABRIR expresion DELIMITADOR_CERRAR .)
+    DELIMITADOR_CUADRADO_CERRAR reduce using rule 44 (factor -> DELIMITADOR_ABRIR expresion DELIMITADOR_CERRAR .)
+    OPERADOR_LOGICO reduce using rule 44 (factor -> DELIMITADOR_ABRIR expresion DELIMITADOR_CERRAR .)
+
+
+state 96
+
+    (41) expresion -> exp expresionX .
+
+    OPERADOR_ANDOR  reduce using rule 41 (expresion -> exp expresionX .)
+    DELIMITADOR_CERRAR reduce using rule 41 (expresion -> exp expresionX .)
+    FIN_LINEA       reduce using rule 41 (expresion -> exp expresionX .)
+
+
+state 97
+
+    (42) expresionX -> OPERADOR_LOGICO . exp
+    (51) exp -> . termino expX
+    (54) termino -> . factor terminoX
+    (44) factor -> . DELIMITADOR_ABRIR expresion DELIMITADOR_CERRAR
+    (45) factor -> . constante
+    (46) factor -> . OPERADOR_SR constante
+    (62) constante -> . cteString
+    (63) constante -> . cteChar
+    (64) constante -> . cteInt
+    (65) constante -> . cteFloat
+    (66) constante -> . cteId
+    (69) cteString -> . STRING
+    (68) cteChar -> . CHAR
+    (67) cteInt -> . INT
+    (70) cteFloat -> . FLOAT
+    (71) cteId -> . IDENTIFICADOR constanteX
+
+    DELIMITADOR_ABRIR shift and go to state 41
+    OPERADOR_SR     shift and go to state 49
+    STRING          shift and go to state 46
+    CHAR            shift and go to state 42
+    INT             shift and go to state 51
+    FLOAT           shift and go to state 52
+    IDENTIFICADOR   shift and go to state 48
+
+    cteString                      shift and go to state 45
+    constante                      shift and go to state 47
+    cteInt                         shift and go to state 39
+    cteFloat                       shift and go to state 40
+    termino                        shift and go to state 43
+    exp                            shift and go to state 125
+    factor                         shift and go to state 44
+    cteChar                        shift and go to state 50
+    cteId                          shift and go to state 54
+
+state 98
+
+    (52) expX -> OPERADOR_SR exp .
+
+    DELIMITADOR_CUADRADO_CERRAR reduce using rule 52 (expX -> OPERADOR_SR exp .)
+    OPERADOR_LOGICO reduce using rule 52 (expX -> OPERADOR_SR exp .)
+    DELIMITADOR_CERRAR reduce using rule 52 (expX -> OPERADOR_SR exp .)
+    OPERADOR_ANDOR  reduce using rule 52 (expX -> OPERADOR_SR exp .)
+    FIN_LINEA       reduce using rule 52 (expX -> OPERADOR_SR exp .)
+
+
+state 99
+
+    (55) terminoX -> OPERADOR_MD termino .
+
+    OPERADOR_SR     reduce using rule 55 (terminoX -> OPERADOR_MD termino .)
+    DELIMITADOR_CUADRADO_CERRAR reduce using rule 55 (terminoX -> OPERADOR_MD termino .)
+    OPERADOR_LOGICO reduce using rule 55 (terminoX -> OPERADOR_MD termino .)
+    DELIMITADOR_CERRAR reduce using rule 55 (terminoX -> OPERADOR_MD termino .)
+    OPERADOR_ANDOR  reduce using rule 55 (terminoX -> OPERADOR_MD termino .)
+    FIN_LINEA       reduce using rule 55 (terminoX -> OPERADOR_MD termino .)
+
+
+state 100
+
+    (73) constanteX -> DELIMITADOR_ABRIR constanteY . DELIMITADOR_CERRAR
+
+    DELIMITADOR_CERRAR shift and go to state 126
+
+
+state 101
+
+    (72) constanteX -> DELIMITADOR_CUADRADO exp . DELIMITADOR_CUADRADO_CERRAR
+
+    DELIMITADOR_CUADRADO_CERRAR shift and go to state 127
+
+
+state 102
+
+    (57) while -> WHILE DELIMITADOR_ABRIR operacion inicioWhile . DELIMITADOR_LLAVES bloqueCodigo finWhile
+
+    DELIMITADOR_LLAVES shift and go to state 128
+
+
+state 103
+
+    (84) inicioWhile -> DELIMITADOR_CERRAR .
+
+    DELIMITADOR_LLAVES reduce using rule 84 (inicioWhile -> DELIMITADOR_CERRAR .)
+
+
+state 104
+
+    (38) operacion -> expresion operacionX .
+
+    DELIMITADOR_CERRAR reduce using rule 38 (operacion -> expresion operacionX .)
+    FIN_LINEA       reduce using rule 38 (operacion -> expresion operacionX .)
+
+
+state 105
+
+    (39) operacionX -> OPERADOR_ANDOR . operacion
+    (38) operacion -> . expresion operacionX
+    (41) expresion -> . exp expresionX
+    (51) exp -> . termino expX
+    (54) termino -> . factor terminoX
+    (44) factor -> . DELIMITADOR_ABRIR expresion DELIMITADOR_CERRAR
+    (45) factor -> . constante
+    (46) factor -> . OPERADOR_SR constante
+    (62) constante -> . cteString
+    (63) constante -> . cteChar
+    (64) constante -> . cteInt
+    (65) constante -> . cteFloat
+    (66) constante -> . cteId
+    (69) cteString -> . STRING
+    (68) cteChar -> . CHAR
+    (67) cteInt -> . INT
+    (70) cteFloat -> . FLOAT
+    (71) cteId -> . IDENTIFICADOR constanteX
+
+    DELIMITADOR_ABRIR shift and go to state 41
+    OPERADOR_SR     shift and go to state 49
+    STRING          shift and go to state 46
+    CHAR            shift and go to state 42
+    INT             shift and go to state 51
+    FLOAT           shift and go to state 52
+    IDENTIFICADOR   shift and go to state 48
+
+    expresion                      shift and go to state 82
+    cteString                      shift and go to state 45
+    operacion                      shift and go to state 129
+    constante                      shift and go to state 47
+    cteInt                         shift and go to state 39
+    cteFloat                       shift and go to state 40
+    termino                        shift and go to state 43
+    exp                            shift and go to state 71
+    factor                         shift and go to state 44
+    cteChar                        shift and go to state 50
+    cteId                          shift and go to state 54
+
+state 106
+
+    (47) escritura -> PRINT DELIMITADOR_ABRIR operacion DELIMITADOR_CERRAR . FIN_LINEA
+
+    FIN_LINEA       shift and go to state 130
+
+
+state 107
+
+    (75) constanteY -> constante constanteZ .
+
+    DELIMITADOR_CERRAR reduce using rule 75 (constanteY -> constante constanteZ .)
+
+
+state 108
+
+    (77) constanteZ -> SEPARADOR . constanteY
+    (75) constanteY -> . constante constanteZ
+    (76) constanteY -> .
+    (62) constante -> . cteString
+    (63) constante -> . cteChar
+    (64) constante -> . cteInt
+    (65) constante -> . cteFloat
+    (66) constante -> . cteId
+    (69) cteString -> . STRING
+    (68) cteChar -> . CHAR
+    (67) cteInt -> . INT
+    (70) cteFloat -> . FLOAT
+    (71) cteId -> . IDENTIFICADOR constanteX
+
+    DELIMITADOR_CERRAR reduce using rule 76 (constanteY -> .)
+    STRING          shift and go to state 46
+    CHAR            shift and go to state 42
+    INT             shift and go to state 51
+    FLOAT           shift and go to state 52
+    IDENTIFICADOR   shift and go to state 48
+
+    cteString                      shift and go to state 45
+    constante                      shift and go to state 85
+    cteInt                         shift and go to state 39
+    cteFloat                       shift and go to state 40
+    constanteY                     shift and go to state 131
+    cteChar                        shift and go to state 50
+    cteId                          shift and go to state 54
+
+state 109
+
+    (14) estatutoX -> DELIMITADOR_ABRIR constanteY DELIMITADOR_CERRAR . FIN_LINEA
+
+    FIN_LINEA       shift and go to state 132
+
+
+state 110
+
+    (17) estatutoY -> asignacionY . FIN_LINEA
+
+    FIN_LINEA       shift and go to state 133
+
+
+state 111
+
+    (16) estatutoY -> input .
+
+    IDENTIFICADOR   reduce using rule 16 (estatutoY -> input .)
+    PRINT           reduce using rule 16 (estatutoY -> input .)
+    IF              reduce using rule 16 (estatutoY -> input .)
+    WHILE           reduce using rule 16 (estatutoY -> input .)
+    TIPO_STRING     reduce using rule 16 (estatutoY -> input .)
+    TIPO_CHAR       reduce using rule 16 (estatutoY -> input .)
+    TIPO_INT        reduce using rule 16 (estatutoY -> input .)
+    TIPO_FLOAT      reduce using rule 16 (estatutoY -> input .)
+    TIPO_VOID       reduce using rule 16 (estatutoY -> input .)
+    DELIMITADOR_LLAVES reduce using rule 16 (estatutoY -> input .)
+    RETURN          reduce using rule 16 (estatutoY -> input .)
+
+
+state 112
+
+    (50) asignacionY -> operacion .
+
+    FIN_LINEA       reduce using rule 50 (asignacionY -> operacion .)
+
+
+state 113
+
+    (61) input -> INPUT . DELIMITADOR_ABRIR tipo DELIMITADOR_CERRAR FIN_LINEA
+
+    DELIMITADOR_ABRIR shift and go to state 134
+
+
+state 114
+
+    (15) estatutoX -> asignacionX OPERADOR_ASIGNACION estatutoY .
+
+    IDENTIFICADOR   reduce using rule 15 (estatutoX -> asignacionX OPERADOR_ASIGNACION estatutoY .)
+    PRINT           reduce using rule 15 (estatutoX -> asignacionX OPERADOR_ASIGNACION estatutoY .)
+    IF              reduce using rule 15 (estatutoX -> asignacionX OPERADOR_ASIGNACION estatutoY .)
+    WHILE           reduce using rule 15 (estatutoX -> asignacionX OPERADOR_ASIGNACION estatutoY .)
+    TIPO_STRING     reduce using rule 15 (estatutoX -> asignacionX OPERADOR_ASIGNACION estatutoY .)
+    TIPO_CHAR       reduce using rule 15 (estatutoX -> asignacionX OPERADOR_ASIGNACION estatutoY .)
+    TIPO_INT        reduce using rule 15 (estatutoX -> asignacionX OPERADOR_ASIGNACION estatutoY .)
+    TIPO_FLOAT      reduce using rule 15 (estatutoX -> asignacionX OPERADOR_ASIGNACION estatutoY .)
+    TIPO_VOID       reduce using rule 15 (estatutoX -> asignacionX OPERADOR_ASIGNACION estatutoY .)
+    DELIMITADOR_LLAVES reduce using rule 15 (estatutoX -> asignacionX OPERADOR_ASIGNACION estatutoY .)
+    RETURN          reduce using rule 15 (estatutoX -> asignacionX OPERADOR_ASIGNACION estatutoY .)
+
+
+state 115
+
+    (48) asignacionX -> DELIMITADOR_CUADRADO exp DELIMITADOR_CUADRADO_CERRAR .
+
+    OPERADOR_ASIGNACION reduce using rule 48 (asignacionX -> DELIMITADOR_CUADRADO exp DELIMITADOR_CUADRADO_CERRAR .)
+
+
+state 116
+
+    (58) if -> IF DELIMITADOR_ABRIR operacion inicioIf . DELIMITADOR_LLAVES bloqueCodigo DELIMITADOR_LLAVES ifX
+
+    DELIMITADOR_LLAVES shift and go to state 135
+
+
+state 117
+
+    (86) inicioIf -> DELIMITADOR_CERRAR .
+
+    DELIMITADOR_LLAVES reduce using rule 86 (inicioIf -> DELIMITADOR_CERRAR .)
+
+
+state 118
+
+    (26) idFuncionZ -> DELIMITADOR_CUADRADO exp . DELIMITADOR_CUADRADO_CERRAR
+
+    DELIMITADOR_CUADRADO_CERRAR shift and go to state 136
+
+
+state 119
+
+    (23) idFuncionY -> nextParam . idFuncionX
+    (20) idFuncionX -> . tipo nomParametro idFuncionZ idFuncionY
+    (21) idFuncionX -> .
+    (79) tipo -> . TIPO_STRING
+    (80) tipo -> . TIPO_CHAR
+    (81) tipo -> . TIPO_INT
+    (82) tipo -> . TIPO_FLOAT
+    (83) tipo -> . TIPO_VOID
+
+    DELIMITADOR_CERRAR reduce using rule 21 (idFuncionX -> .)
+    TIPO_STRING     shift and go to state 6
+    TIPO_CHAR       shift and go to state 4
+    TIPO_INT        shift and go to state 1
+    TIPO_FLOAT      shift and go to state 8
+    TIPO_VOID       shift and go to state 5
+
+    tipo                           shift and go to state 35
+    idFuncionX                     shift and go to state 137
+
+state 120
+
+    (25) nextParam -> SEPARADOR .
+
+    TIPO_STRING     reduce using rule 25 (nextParam -> SEPARADOR .)
+    TIPO_CHAR       reduce using rule 25 (nextParam -> SEPARADOR .)
+    TIPO_INT        reduce using rule 25 (nextParam -> SEPARADOR .)
+    TIPO_FLOAT      reduce using rule 25 (nextParam -> SEPARADOR .)
+    TIPO_VOID       reduce using rule 25 (nextParam -> SEPARADOR .)
+    DELIMITADOR_CERRAR reduce using rule 25 (nextParam -> SEPARADOR .)
+
+
+state 121
+
+    (20) idFuncionX -> tipo nomParametro idFuncionZ idFuncionY .
+
+    DELIMITADOR_CERRAR reduce using rule 20 (idFuncionX -> tipo nomParametro idFuncionZ idFuncionY .)
+
+
+state 122
+
+    (18) funcion -> idFuncion inicioFuncion bloqueCodigo accionRetorno DELIMITADOR_LLAVES .
+
+    TIPO_STRING     reduce using rule 18 (funcion -> idFuncion inicioFuncion bloqueCodigo accionRetorno DELIMITADOR_LLAVES .)
+    TIPO_CHAR       reduce using rule 18 (funcion -> idFuncion inicioFuncion bloqueCodigo accionRetorno DELIMITADOR_LLAVES .)
+    TIPO_INT        reduce using rule 18 (funcion -> idFuncion inicioFuncion bloqueCodigo accionRetorno DELIMITADOR_LLAVES .)
+    TIPO_FLOAT      reduce using rule 18 (funcion -> idFuncion inicioFuncion bloqueCodigo accionRetorno DELIMITADOR_LLAVES .)
+    TIPO_VOID       reduce using rule 18 (funcion -> idFuncion inicioFuncion bloqueCodigo accionRetorno DELIMITADOR_LLAVES .)
+    MAIN            reduce using rule 18 (funcion -> idFuncion inicioFuncion bloqueCodigo accionRetorno DELIMITADOR_LLAVES .)
+
+
+state 123
+
+    (30) accionRetornoX -> constante .
+
+    FIN_LINEA       reduce using rule 30 (accionRetornoX -> constante .)
+
+
+state 124
+
+    (29) accionRetorno -> RETURN accionRetornoX . FIN_LINEA
+
+    FIN_LINEA       shift and go to state 138
+
+
+state 125
+
+    (42) expresionX -> OPERADOR_LOGICO exp .
+
+    DELIMITADOR_CERRAR reduce using rule 42 (expresionX -> OPERADOR_LOGICO exp .)
+    OPERADOR_ANDOR  reduce using rule 42 (expresionX -> OPERADOR_LOGICO exp .)
+    FIN_LINEA       reduce using rule 42 (expresionX -> OPERADOR_LOGICO exp .)
+
+
+state 126
+
+    (73) constanteX -> DELIMITADOR_ABRIR constanteY DELIMITADOR_CERRAR .
+
+    OPERADOR_MD     reduce using rule 73 (constanteX -> DELIMITADOR_ABRIR constanteY DELIMITADOR_CERRAR .)
+    OPERADOR_SR     reduce using rule 73 (constanteX -> DELIMITADOR_ABRIR constanteY DELIMITADOR_CERRAR .)
+    DELIMITADOR_CUADRADO_CERRAR reduce using rule 73 (constanteX -> DELIMITADOR_ABRIR constanteY DELIMITADOR_CERRAR .)
+    OPERADOR_LOGICO reduce using rule 73 (constanteX -> DELIMITADOR_ABRIR constanteY DELIMITADOR_CERRAR .)
+    DELIMITADOR_CERRAR reduce using rule 73 (constanteX -> DELIMITADOR_ABRIR constanteY DELIMITADOR_CERRAR .)
+    OPERADOR_ANDOR  reduce using rule 73 (constanteX -> DELIMITADOR_ABRIR constanteY DELIMITADOR_CERRAR .)
+    FIN_LINEA       reduce using rule 73 (constanteX -> DELIMITADOR_ABRIR constanteY DELIMITADOR_CERRAR .)
+    SEPARADOR       reduce using rule 73 (constanteX -> DELIMITADOR_ABRIR constanteY DELIMITADOR_CERRAR .)
+
+
+state 127
+
+    (72) constanteX -> DELIMITADOR_CUADRADO exp DELIMITADOR_CUADRADO_CERRAR .
+
+    OPERADOR_MD     reduce using rule 72 (constanteX -> DELIMITADOR_CUADRADO exp DELIMITADOR_CUADRADO_CERRAR .)
+    OPERADOR_SR     reduce using rule 72 (constanteX -> DELIMITADOR_CUADRADO exp DELIMITADOR_CUADRADO_CERRAR .)
+    DELIMITADOR_CUADRADO_CERRAR reduce using rule 72 (constanteX -> DELIMITADOR_CUADRADO exp DELIMITADOR_CUADRADO_CERRAR .)
+    OPERADOR_LOGICO reduce using rule 72 (constanteX -> DELIMITADOR_CUADRADO exp DELIMITADOR_CUADRADO_CERRAR .)
+    DELIMITADOR_CERRAR reduce using rule 72 (constanteX -> DELIMITADOR_CUADRADO exp DELIMITADOR_CUADRADO_CERRAR .)
+    OPERADOR_ANDOR  reduce using rule 72 (constanteX -> DELIMITADOR_CUADRADO exp DELIMITADOR_CUADRADO_CERRAR .)
+    FIN_LINEA       reduce using rule 72 (constanteX -> DELIMITADOR_CUADRADO exp DELIMITADOR_CUADRADO_CERRAR .)
+    SEPARADOR       reduce using rule 72 (constanteX -> DELIMITADOR_CUADRADO exp DELIMITADOR_CUADRADO_CERRAR .)
+
+
+state 128
+
+    (57) while -> WHILE DELIMITADOR_ABRIR operacion inicioWhile DELIMITADOR_LLAVES . bloqueCodigo finWhile
+    (7) bloqueCodigo -> . estatuto bloqueCodigo
+    (8) bloqueCodigo -> .
+    (9) estatuto -> . escritura
+    (10) estatuto -> . IDENTIFICADOR estatutoX
+    (11) estatuto -> . if
+    (12) estatuto -> . while
+    (13) estatuto -> . tipo IDENTIFICADOR var
+    (47) escritura -> . PRINT DELIMITADOR_ABRIR operacion DELIMITADOR_CERRAR FIN_LINEA
+    (58) if -> . IF DELIMITADOR_ABRIR operacion inicioIf DELIMITADOR_LLAVES bloqueCodigo DELIMITADOR_LLAVES ifX
+    (57) while -> . WHILE DELIMITADOR_ABRIR operacion inicioWhile DELIMITADOR_LLAVES bloqueCodigo finWhile
+    (79) tipo -> . TIPO_STRING
+    (80) tipo -> . TIPO_CHAR
+    (81) tipo -> . TIPO_INT
+    (82) tipo -> . TIPO_FLOAT
+    (83) tipo -> . TIPO_VOID
+
+    DELIMITADOR_LLAVES reduce using rule 8 (bloqueCodigo -> .)
+    IDENTIFICADOR   shift and go to state 26
+    PRINT           shift and go to state 22
+    IF              shift and go to state 28
+    WHILE           shift and go to state 21
+    TIPO_STRING     shift and go to state 6
+    TIPO_CHAR       shift and go to state 4
+    TIPO_INT        shift and go to state 1
+    TIPO_FLOAT      shift and go to state 8
+    TIPO_VOID       shift and go to state 5
+
+    tipo                           shift and go to state 24
+    estatuto                       shift and go to state 25
+    while                          shift and go to state 29
+    bloqueCodigo                   shift and go to state 139
+    if                             shift and go to state 23
+    escritura                      shift and go to state 30
+
+state 129
+
+    (39) operacionX -> OPERADOR_ANDOR operacion .
+
+    DELIMITADOR_CERRAR reduce using rule 39 (operacionX -> OPERADOR_ANDOR operacion .)
+    FIN_LINEA       reduce using rule 39 (operacionX -> OPERADOR_ANDOR operacion .)
+
+
+state 130
+
+    (47) escritura -> PRINT DELIMITADOR_ABRIR operacion DELIMITADOR_CERRAR FIN_LINEA .
+
+    IDENTIFICADOR   reduce using rule 47 (escritura -> PRINT DELIMITADOR_ABRIR operacion DELIMITADOR_CERRAR FIN_LINEA .)
+    PRINT           reduce using rule 47 (escritura -> PRINT DELIMITADOR_ABRIR operacion DELIMITADOR_CERRAR FIN_LINEA .)
+    IF              reduce using rule 47 (escritura -> PRINT DELIMITADOR_ABRIR operacion DELIMITADOR_CERRAR FIN_LINEA .)
+    WHILE           reduce using rule 47 (escritura -> PRINT DELIMITADOR_ABRIR operacion DELIMITADOR_CERRAR FIN_LINEA .)
+    TIPO_STRING     reduce using rule 47 (escritura -> PRINT DELIMITADOR_ABRIR operacion DELIMITADOR_CERRAR FIN_LINEA .)
+    TIPO_CHAR       reduce using rule 47 (escritura -> PRINT DELIMITADOR_ABRIR operacion DELIMITADOR_CERRAR FIN_LINEA .)
+    TIPO_INT        reduce using rule 47 (escritura -> PRINT DELIMITADOR_ABRIR operacion DELIMITADOR_CERRAR FIN_LINEA .)
+    TIPO_FLOAT      reduce using rule 47 (escritura -> PRINT DELIMITADOR_ABRIR operacion DELIMITADOR_CERRAR FIN_LINEA .)
+    TIPO_VOID       reduce using rule 47 (escritura -> PRINT DELIMITADOR_ABRIR operacion DELIMITADOR_CERRAR FIN_LINEA .)
+    RETURN          reduce using rule 47 (escritura -> PRINT DELIMITADOR_ABRIR operacion DELIMITADOR_CERRAR FIN_LINEA .)
+    DELIMITADOR_LLAVES reduce using rule 47 (escritura -> PRINT DELIMITADOR_ABRIR operacion DELIMITADOR_CERRAR FIN_LINEA .)
+
+
+state 131
+
+    (77) constanteZ -> SEPARADOR constanteY .
+
+    DELIMITADOR_CERRAR reduce using rule 77 (constanteZ -> SEPARADOR constanteY .)
+
+
+state 132
+
+    (14) estatutoX -> DELIMITADOR_ABRIR constanteY DELIMITADOR_CERRAR FIN_LINEA .
+
+    IDENTIFICADOR   reduce using rule 14 (estatutoX -> DELIMITADOR_ABRIR constanteY DELIMITADOR_CERRAR FIN_LINEA .)
+    PRINT           reduce using rule 14 (estatutoX -> DELIMITADOR_ABRIR constanteY DELIMITADOR_CERRAR FIN_LINEA .)
+    IF              reduce using rule 14 (estatutoX -> DELIMITADOR_ABRIR constanteY DELIMITADOR_CERRAR FIN_LINEA .)
+    WHILE           reduce using rule 14 (estatutoX -> DELIMITADOR_ABRIR constanteY DELIMITADOR_CERRAR FIN_LINEA .)
+    TIPO_STRING     reduce using rule 14 (estatutoX -> DELIMITADOR_ABRIR constanteY DELIMITADOR_CERRAR FIN_LINEA .)
+    TIPO_CHAR       reduce using rule 14 (estatutoX -> DELIMITADOR_ABRIR constanteY DELIMITADOR_CERRAR FIN_LINEA .)
+    TIPO_INT        reduce using rule 14 (estatutoX -> DELIMITADOR_ABRIR constanteY DELIMITADOR_CERRAR FIN_LINEA .)
+    TIPO_FLOAT      reduce using rule 14 (estatutoX -> DELIMITADOR_ABRIR constanteY DELIMITADOR_CERRAR FIN_LINEA .)
+    TIPO_VOID       reduce using rule 14 (estatutoX -> DELIMITADOR_ABRIR constanteY DELIMITADOR_CERRAR FIN_LINEA .)
+    DELIMITADOR_LLAVES reduce using rule 14 (estatutoX -> DELIMITADOR_ABRIR constanteY DELIMITADOR_CERRAR FIN_LINEA .)
+    RETURN          reduce using rule 14 (estatutoX -> DELIMITADOR_ABRIR constanteY DELIMITADOR_CERRAR FIN_LINEA .)
+
+
+state 133
+
+    (17) estatutoY -> asignacionY FIN_LINEA .
+
+    IDENTIFICADOR   reduce using rule 17 (estatutoY -> asignacionY FIN_LINEA .)
+    PRINT           reduce using rule 17 (estatutoY -> asignacionY FIN_LINEA .)
+    IF              reduce using rule 17 (estatutoY -> asignacionY FIN_LINEA .)
+    WHILE           reduce using rule 17 (estatutoY -> asignacionY FIN_LINEA .)
+    TIPO_STRING     reduce using rule 17 (estatutoY -> asignacionY FIN_LINEA .)
+    TIPO_CHAR       reduce using rule 17 (estatutoY -> asignacionY FIN_LINEA .)
+    TIPO_INT        reduce using rule 17 (estatutoY -> asignacionY FIN_LINEA .)
+    TIPO_FLOAT      reduce using rule 17 (estatutoY -> asignacionY FIN_LINEA .)
+    TIPO_VOID       reduce using rule 17 (estatutoY -> asignacionY FIN_LINEA .)
+    DELIMITADOR_LLAVES reduce using rule 17 (estatutoY -> asignacionY FIN_LINEA .)
+    RETURN          reduce using rule 17 (estatutoY -> asignacionY FIN_LINEA .)
+
+
+state 134
+
+    (61) input -> INPUT DELIMITADOR_ABRIR . tipo DELIMITADOR_CERRAR FIN_LINEA
+    (79) tipo -> . TIPO_STRING
+    (80) tipo -> . TIPO_CHAR
+    (81) tipo -> . TIPO_INT
+    (82) tipo -> . TIPO_FLOAT
+    (83) tipo -> . TIPO_VOID
+
+    TIPO_STRING     shift and go to state 6
+    TIPO_CHAR       shift and go to state 4
+    TIPO_INT        shift and go to state 1
+    TIPO_FLOAT      shift and go to state 8
+    TIPO_VOID       shift and go to state 5
+
+    tipo                           shift and go to state 140
+
+state 135
+
+    (58) if -> IF DELIMITADOR_ABRIR operacion inicioIf DELIMITADOR_LLAVES . bloqueCodigo DELIMITADOR_LLAVES ifX
+    (7) bloqueCodigo -> . estatuto bloqueCodigo
+    (8) bloqueCodigo -> .
+    (9) estatuto -> . escritura
+    (10) estatuto -> . IDENTIFICADOR estatutoX
+    (11) estatuto -> . if
+    (12) estatuto -> . while
+    (13) estatuto -> . tipo IDENTIFICADOR var
+    (47) escritura -> . PRINT DELIMITADOR_ABRIR operacion DELIMITADOR_CERRAR FIN_LINEA
+    (58) if -> . IF DELIMITADOR_ABRIR operacion inicioIf DELIMITADOR_LLAVES bloqueCodigo DELIMITADOR_LLAVES ifX
+    (57) while -> . WHILE DELIMITADOR_ABRIR operacion inicioWhile DELIMITADOR_LLAVES bloqueCodigo finWhile
+    (79) tipo -> . TIPO_STRING
+    (80) tipo -> . TIPO_CHAR
+    (81) tipo -> . TIPO_INT
+    (82) tipo -> . TIPO_FLOAT
+    (83) tipo -> . TIPO_VOID
+
+    DELIMITADOR_LLAVES reduce using rule 8 (bloqueCodigo -> .)
+    IDENTIFICADOR   shift and go to state 26
+    PRINT           shift and go to state 22
+    IF              shift and go to state 28
+    WHILE           shift and go to state 21
+    TIPO_STRING     shift and go to state 6
+    TIPO_CHAR       shift and go to state 4
+    TIPO_INT        shift and go to state 1
+    TIPO_FLOAT      shift and go to state 8
+    TIPO_VOID       shift and go to state 5
+
+    tipo                           shift and go to state 24
+    estatuto                       shift and go to state 25
+    while                          shift and go to state 29
+    bloqueCodigo                   shift and go to state 141
+    if                             shift and go to state 23
+    escritura                      shift and go to state 30
+
+state 136
+
+    (26) idFuncionZ -> DELIMITADOR_CUADRADO exp DELIMITADOR_CUADRADO_CERRAR .
+
+    SEPARADOR       reduce using rule 26 (idFuncionZ -> DELIMITADOR_CUADRADO exp DELIMITADOR_CUADRADO_CERRAR .)
+    DELIMITADOR_CERRAR reduce using rule 26 (idFuncionZ -> DELIMITADOR_CUADRADO exp DELIMITADOR_CUADRADO_CERRAR .)
+
+
+state 137
+
+    (23) idFuncionY -> nextParam idFuncionX .
+
+    DELIMITADOR_CERRAR reduce using rule 23 (idFuncionY -> nextParam idFuncionX .)
+
+
+state 138
+
+    (29) accionRetorno -> RETURN accionRetornoX FIN_LINEA .
+
+    DELIMITADOR_LLAVES reduce using rule 29 (accionRetorno -> RETURN accionRetornoX FIN_LINEA .)
+
+
+state 139
+
+    (57) while -> WHILE DELIMITADOR_ABRIR operacion inicioWhile DELIMITADOR_LLAVES bloqueCodigo . finWhile
+    (85) finWhile -> . DELIMITADOR_LLAVES
+
+    DELIMITADOR_LLAVES shift and go to state 143
+
+    finWhile                       shift and go to state 142
+
+state 140
+
+    (61) input -> INPUT DELIMITADOR_ABRIR tipo . DELIMITADOR_CERRAR FIN_LINEA
+
+    DELIMITADOR_CERRAR shift and go to state 144
+
+
+state 141
+
+    (58) if -> IF DELIMITADOR_ABRIR operacion inicioIf DELIMITADOR_LLAVES bloqueCodigo . DELIMITADOR_LLAVES ifX
+
+    DELIMITADOR_LLAVES shift and go to state 145
+
+
+state 142
+
+    (57) while -> WHILE DELIMITADOR_ABRIR operacion inicioWhile DELIMITADOR_LLAVES bloqueCodigo finWhile .
+
+    IDENTIFICADOR   reduce using rule 57 (while -> WHILE DELIMITADOR_ABRIR operacion inicioWhile DELIMITADOR_LLAVES bloqueCodigo finWhile .)
+    PRINT           reduce using rule 57 (while -> WHILE DELIMITADOR_ABRIR operacion inicioWhile DELIMITADOR_LLAVES bloqueCodigo finWhile .)
+    IF              reduce using rule 57 (while -> WHILE DELIMITADOR_ABRIR operacion inicioWhile DELIMITADOR_LLAVES bloqueCodigo finWhile .)
+    WHILE           reduce using rule 57 (while -> WHILE DELIMITADOR_ABRIR operacion inicioWhile DELIMITADOR_LLAVES bloqueCodigo finWhile .)
+    TIPO_STRING     reduce using rule 57 (while -> WHILE DELIMITADOR_ABRIR operacion inicioWhile DELIMITADOR_LLAVES bloqueCodigo finWhile .)
+    TIPO_CHAR       reduce using rule 57 (while -> WHILE DELIMITADOR_ABRIR operacion inicioWhile DELIMITADOR_LLAVES bloqueCodigo finWhile .)
+    TIPO_INT        reduce using rule 57 (while -> WHILE DELIMITADOR_ABRIR operacion inicioWhile DELIMITADOR_LLAVES bloqueCodigo finWhile .)
+    TIPO_FLOAT      reduce using rule 57 (while -> WHILE DELIMITADOR_ABRIR operacion inicioWhile DELIMITADOR_LLAVES bloqueCodigo finWhile .)
+    TIPO_VOID       reduce using rule 57 (while -> WHILE DELIMITADOR_ABRIR operacion inicioWhile DELIMITADOR_LLAVES bloqueCodigo finWhile .)
+    DELIMITADOR_LLAVES reduce using rule 57 (while -> WHILE DELIMITADOR_ABRIR operacion inicioWhile DELIMITADOR_LLAVES bloqueCodigo finWhile .)
+    RETURN          reduce using rule 57 (while -> WHILE DELIMITADOR_ABRIR operacion inicioWhile DELIMITADOR_LLAVES bloqueCodigo finWhile .)
+
+
+state 143
+
+    (85) finWhile -> DELIMITADOR_LLAVES .
+
+    IDENTIFICADOR   reduce using rule 85 (finWhile -> DELIMITADOR_LLAVES .)
+    PRINT           reduce using rule 85 (finWhile -> DELIMITADOR_LLAVES .)
+    IF              reduce using rule 85 (finWhile -> DELIMITADOR_LLAVES .)
+    WHILE           reduce using rule 85 (finWhile -> DELIMITADOR_LLAVES .)
+    TIPO_STRING     reduce using rule 85 (finWhile -> DELIMITADOR_LLAVES .)
+    TIPO_CHAR       reduce using rule 85 (finWhile -> DELIMITADOR_LLAVES .)
+    TIPO_INT        reduce using rule 85 (finWhile -> DELIMITADOR_LLAVES .)
+    TIPO_FLOAT      reduce using rule 85 (finWhile -> DELIMITADOR_LLAVES .)
+    TIPO_VOID       reduce using rule 85 (finWhile -> DELIMITADOR_LLAVES .)
+    DELIMITADOR_LLAVES reduce using rule 85 (finWhile -> DELIMITADOR_LLAVES .)
+    RETURN          reduce using rule 85 (finWhile -> DELIMITADOR_LLAVES .)
+
+
+state 144
+
+    (61) input -> INPUT DELIMITADOR_ABRIR tipo DELIMITADOR_CERRAR . FIN_LINEA
+
+    FIN_LINEA       shift and go to state 146
+
+
+state 145
+
+    (58) if -> IF DELIMITADOR_ABRIR operacion inicioIf DELIMITADOR_LLAVES bloqueCodigo DELIMITADOR_LLAVES . ifX
+    (59) ifX -> . else DELIMITADOR_LLAVES bloqueCodigo DELIMITADOR_LLAVES
+    (60) ifX -> .
+    (87) else -> . ELSE
+
+    IDENTIFICADOR   reduce using rule 60 (ifX -> .)
+    PRINT           reduce using rule 60 (ifX -> .)
+    IF              reduce using rule 60 (ifX -> .)
+    WHILE           reduce using rule 60 (ifX -> .)
+    TIPO_STRING     reduce using rule 60 (ifX -> .)
+    TIPO_CHAR       reduce using rule 60 (ifX -> .)
+    TIPO_INT        reduce using rule 60 (ifX -> .)
+    TIPO_FLOAT      reduce using rule 60 (ifX -> .)
+    TIPO_VOID       reduce using rule 60 (ifX -> .)
+    DELIMITADOR_LLAVES reduce using rule 60 (ifX -> .)
+    RETURN          reduce using rule 60 (ifX -> .)
+    ELSE            shift and go to state 149
+
+    else                           shift and go to state 148
+    ifX                            shift and go to state 147
+
+state 146
+
+    (61) input -> INPUT DELIMITADOR_ABRIR tipo DELIMITADOR_CERRAR FIN_LINEA .
+
+    IDENTIFICADOR   reduce using rule 61 (input -> INPUT DELIMITADOR_ABRIR tipo DELIMITADOR_CERRAR FIN_LINEA .)
+    PRINT           reduce using rule 61 (input -> INPUT DELIMITADOR_ABRIR tipo DELIMITADOR_CERRAR FIN_LINEA .)
+    IF              reduce using rule 61 (input -> INPUT DELIMITADOR_ABRIR tipo DELIMITADOR_CERRAR FIN_LINEA .)
+    WHILE           reduce using rule 61 (input -> INPUT DELIMITADOR_ABRIR tipo DELIMITADOR_CERRAR FIN_LINEA .)
+    TIPO_STRING     reduce using rule 61 (input -> INPUT DELIMITADOR_ABRIR tipo DELIMITADOR_CERRAR FIN_LINEA .)
+    TIPO_CHAR       reduce using rule 61 (input -> INPUT DELIMITADOR_ABRIR tipo DELIMITADOR_CERRAR FIN_LINEA .)
+    TIPO_INT        reduce using rule 61 (input -> INPUT DELIMITADOR_ABRIR tipo DELIMITADOR_CERRAR FIN_LINEA .)
+    TIPO_FLOAT      reduce using rule 61 (input -> INPUT DELIMITADOR_ABRIR tipo DELIMITADOR_CERRAR FIN_LINEA .)
+    TIPO_VOID       reduce using rule 61 (input -> INPUT DELIMITADOR_ABRIR tipo DELIMITADOR_CERRAR FIN_LINEA .)
+    DELIMITADOR_LLAVES reduce using rule 61 (input -> INPUT DELIMITADOR_ABRIR tipo DELIMITADOR_CERRAR FIN_LINEA .)
+    RETURN          reduce using rule 61 (input -> INPUT DELIMITADOR_ABRIR tipo DELIMITADOR_CERRAR FIN_LINEA .)
+
+
+state 147
+
+    (58) if -> IF DELIMITADOR_ABRIR operacion inicioIf DELIMITADOR_LLAVES bloqueCodigo DELIMITADOR_LLAVES ifX .
+
+    IDENTIFICADOR   reduce using rule 58 (if -> IF DELIMITADOR_ABRIR operacion inicioIf DELIMITADOR_LLAVES bloqueCodigo DELIMITADOR_LLAVES ifX .)
+    PRINT           reduce using rule 58 (if -> IF DELIMITADOR_ABRIR operacion inicioIf DELIMITADOR_LLAVES bloqueCodigo DELIMITADOR_LLAVES ifX .)
+    IF              reduce using rule 58 (if -> IF DELIMITADOR_ABRIR operacion inicioIf DELIMITADOR_LLAVES bloqueCodigo DELIMITADOR_LLAVES ifX .)
+    WHILE           reduce using rule 58 (if -> IF DELIMITADOR_ABRIR operacion inicioIf DELIMITADOR_LLAVES bloqueCodigo DELIMITADOR_LLAVES ifX .)
+    TIPO_STRING     reduce using rule 58 (if -> IF DELIMITADOR_ABRIR operacion inicioIf DELIMITADOR_LLAVES bloqueCodigo DELIMITADOR_LLAVES ifX .)
+    TIPO_CHAR       reduce using rule 58 (if -> IF DELIMITADOR_ABRIR operacion inicioIf DELIMITADOR_LLAVES bloqueCodigo DELIMITADOR_LLAVES ifX .)
+    TIPO_INT        reduce using rule 58 (if -> IF DELIMITADOR_ABRIR operacion inicioIf DELIMITADOR_LLAVES bloqueCodigo DELIMITADOR_LLAVES ifX .)
+    TIPO_FLOAT      reduce using rule 58 (if -> IF DELIMITADOR_ABRIR operacion inicioIf DELIMITADOR_LLAVES bloqueCodigo DELIMITADOR_LLAVES ifX .)
+    TIPO_VOID       reduce using rule 58 (if -> IF DELIMITADOR_ABRIR operacion inicioIf DELIMITADOR_LLAVES bloqueCodigo DELIMITADOR_LLAVES ifX .)
+    DELIMITADOR_LLAVES reduce using rule 58 (if -> IF DELIMITADOR_ABRIR operacion inicioIf DELIMITADOR_LLAVES bloqueCodigo DELIMITADOR_LLAVES ifX .)
+    RETURN          reduce using rule 58 (if -> IF DELIMITADOR_ABRIR operacion inicioIf DELIMITADOR_LLAVES bloqueCodigo DELIMITADOR_LLAVES ifX .)
+
+
+state 148
+
+    (59) ifX -> else . DELIMITADOR_LLAVES bloqueCodigo DELIMITADOR_LLAVES
+
+    DELIMITADOR_LLAVES shift and go to state 150
+
+
+state 149
+
+    (87) else -> ELSE .
+
+    DELIMITADOR_LLAVES reduce using rule 87 (else -> ELSE .)
+
+
+state 150
+
+    (59) ifX -> else DELIMITADOR_LLAVES . bloqueCodigo DELIMITADOR_LLAVES
+    (7) bloqueCodigo -> . estatuto bloqueCodigo
+    (8) bloqueCodigo -> .
+    (9) estatuto -> . escritura
+    (10) estatuto -> . IDENTIFICADOR estatutoX
+    (11) estatuto -> . if
+    (12) estatuto -> . while
+    (13) estatuto -> . tipo IDENTIFICADOR var
+    (47) escritura -> . PRINT DELIMITADOR_ABRIR operacion DELIMITADOR_CERRAR FIN_LINEA
+    (58) if -> . IF DELIMITADOR_ABRIR operacion inicioIf DELIMITADOR_LLAVES bloqueCodigo DELIMITADOR_LLAVES ifX
+    (57) while -> . WHILE DELIMITADOR_ABRIR operacion inicioWhile DELIMITADOR_LLAVES bloqueCodigo finWhile
+    (79) tipo -> . TIPO_STRING
+    (80) tipo -> . TIPO_CHAR
+    (81) tipo -> . TIPO_INT
+    (82) tipo -> . TIPO_FLOAT
+    (83) tipo -> . TIPO_VOID
+
+    DELIMITADOR_LLAVES reduce using rule 8 (bloqueCodigo -> .)
+    IDENTIFICADOR   shift and go to state 26
+    PRINT           shift and go to state 22
+    IF              shift and go to state 28
+    WHILE           shift and go to state 21
+    TIPO_STRING     shift and go to state 6
+    TIPO_CHAR       shift and go to state 4
+    TIPO_INT        shift and go to state 1
+    TIPO_FLOAT      shift and go to state 8
+    TIPO_VOID       shift and go to state 5
+
+    tipo                           shift and go to state 24
+    estatuto                       shift and go to state 25
+    while                          shift and go to state 29
+    bloqueCodigo                   shift and go to state 151
+    if                             shift and go to state 23
+    escritura                      shift and go to state 30
+
+state 151
+
+    (59) ifX -> else DELIMITADOR_LLAVES bloqueCodigo . DELIMITADOR_LLAVES
+
+    DELIMITADOR_LLAVES shift and go to state 152
+
+
+state 152
+
+    (59) ifX -> else DELIMITADOR_LLAVES bloqueCodigo DELIMITADOR_LLAVES .
+
+    IDENTIFICADOR   reduce using rule 59 (ifX -> else DELIMITADOR_LLAVES bloqueCodigo DELIMITADOR_LLAVES .)
+    PRINT           reduce using rule 59 (ifX -> else DELIMITADOR_LLAVES bloqueCodigo DELIMITADOR_LLAVES .)
+    IF              reduce using rule 59 (ifX -> else DELIMITADOR_LLAVES bloqueCodigo DELIMITADOR_LLAVES .)
+    WHILE           reduce using rule 59 (ifX -> else DELIMITADOR_LLAVES bloqueCodigo DELIMITADOR_LLAVES .)
+    TIPO_STRING     reduce using rule 59 (ifX -> else DELIMITADOR_LLAVES bloqueCodigo DELIMITADOR_LLAVES .)
+    TIPO_CHAR       reduce using rule 59 (ifX -> else DELIMITADOR_LLAVES bloqueCodigo DELIMITADOR_LLAVES .)
+    TIPO_INT        reduce using rule 59 (ifX -> else DELIMITADOR_LLAVES bloqueCodigo DELIMITADOR_LLAVES .)
+    TIPO_FLOAT      reduce using rule 59 (ifX -> else DELIMITADOR_LLAVES bloqueCodigo DELIMITADOR_LLAVES .)
+    TIPO_VOID       reduce using rule 59 (ifX -> else DELIMITADOR_LLAVES bloqueCodigo DELIMITADOR_LLAVES .)
+    DELIMITADOR_LLAVES reduce using rule 59 (ifX -> else DELIMITADOR_LLAVES bloqueCodigo DELIMITADOR_LLAVES .)
+    RETURN          reduce using rule 59 (ifX -> else DELIMITADOR_LLAVES bloqueCodigo DELIMITADOR_LLAVES .)
+

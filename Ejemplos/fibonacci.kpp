@@ -1,0 +1,30 @@
+int fibonacci(int n) {
+  int ret, arg1, arg2;
+  if (n == 0) {
+    ret = 0;
+  }
+  else {
+
+    if (n == 1) {
+        ret = 1;
+    }
+    else {
+        arg1 = n - 1;
+        arg2 = n - 2;
+        ret = fibonacci(arg1);
+        ret = ret + fibonacci(arg2);
+    }
+  }
+
+  return ret;
+}
+
+main {
+  int i, res;
+
+  i = input(int);
+
+  res = fibonacci(i);
+
+  print(res);
+}

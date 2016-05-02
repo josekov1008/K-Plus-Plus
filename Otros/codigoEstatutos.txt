@@ -1,0 +1,21 @@
+101 - input
+102 - print
+103 - assign
+104 - call (variable)
+105 - function call
+106 - if
+107 - if-else
+
+201 - suma/resta
+202 - multiplicaci�n/divisi�n
+203 - AND/OR
+204 - MAYOR QUE/MENOR QUE
+205 - IGUAL A/DIFERENTE A
+206 - cambio de signo
+
+1000 - INT
+2000 - FLOAT
+3000 - CHAR
+4000 - STRING
+5000 - VOID (Solo funciones)
+9999 - TEMP (funcion aun no encontrada)

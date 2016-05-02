@@ -1,0 +1,53 @@
+main {
+    int bandera, temp, temp2, i, arr[10];
+    i = 0;
+
+    arr[0] = 14;
+    arr[1] = 12;
+    arr[2] = 3;
+    arr[3] = 20;
+    arr[4] = 15;
+    arr[5] = 13;
+    arr[6] = 18;
+    arr[7] = 6;
+    arr[8] = 8;
+    arr[9] = 9;
+
+    print("Arreglo Original");
+
+    while ( i < 10) {
+        print(arr[i]);
+        i = i + 1;
+    }
+
+    print(" ");
+
+    bandera = 1;
+
+    while(bandera == 1) {
+        i = 0;
+        bandera = 0;
+
+        while (i < 9) {
+            if (arr[i] > arr[i + 1]) {
+                temp = arr[i];
+                temp2 = arr[i + 1];
+
+                arr[i] = temp2;
+                arr[i + 1] = temp;
+
+                bandera = 1;
+            }
+            i = i + 1;
+        }
+    }
+
+    print("Arreglo Ordenado");
+    i = 0;
+
+    while ( i < 10) {
+        print(arr[i]);
+        i = i + 1;
+    }
+
+}

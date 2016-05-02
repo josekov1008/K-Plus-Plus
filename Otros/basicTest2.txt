@@ -1,0 +1,10 @@
+main{
+	int v, varX;
+	int n;
+	char c;
+
+	h = n * c;
+	g= 1;
+
+	float g, h, w;
+}

@@ -1,0 +1,13 @@
+void test() {
+	char cc;
+}
+
+
+main{
+	int v, varX;
+
+	h = n;
+
+
+	float g, h, w;
+}

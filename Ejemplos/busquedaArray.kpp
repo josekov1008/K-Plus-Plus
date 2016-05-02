@@ -1,0 +1,33 @@
+main {
+    string a[5], test, elem;
+    int i, found;
+
+    a[0] = "hola";
+    a[1] = "crayola";
+    a[2] = "beagle";
+    a[3] = "foo";
+    a[4] = "bar";
+
+    i = 0;
+    found = -1;
+
+    print("Elemento a buscar");
+
+    test = input(string);
+
+    while (i < 4) {
+        if (a[i] == test) {
+            found = i;
+        }
+
+        i = i + 1;
+    }
+
+    if(found == -1) {
+        print("Elemento no encontrado");
+    }
+    else {
+        print("Elemento encontrado");
+        print(found);
+    }
+}

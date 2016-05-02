@@ -1,0 +1,33 @@
+int fiboIterativo(int n) {
+    int res, fibo, fibo1, fibo2, i;
+
+    if (n < 0) {
+        res = -1;
+    }
+    else{
+        i = 2;
+        fibo1 = 0;
+        fibo2 = 1;
+
+        while (i < n + 1) {
+            fibo = fibo1 + fibo2;
+            fibo1 = fibo2;
+            fibo2 = fibo;
+
+            i = i + 1;
+        }
+
+        res = fibo;
+    }
+
+    return res;
+}
+
+main {
+    int i, r;
+    i = input(int);
+
+    r = fiboIterativo(i);
+
+    print(r);
+}
